@@ -38,3 +38,12 @@ table {
     border-spacing:0;
 }
 /* ------------------------endof Reset Stylesheet ---------------------- */
+
+/* CUSTOM STYLING*/
+
+body{
+    background-color: #f3f3f2;
+    font-family: Raleway;
+}
+
+/* --------------------end of navbar----------------------- */
