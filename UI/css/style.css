@@ -42,7 +42,6 @@ table {
 /* CUSTOM STYLING*/
 
 body{
-    background-color: #f3f3f2;
     font-family: Raleway;
 }
 header{
@@ -83,3 +82,23 @@ nav ul li a{
     font-weight:500;
 }
 /* --------------------end of navbar----------------------- */
+
+@media only screen and (min-width:1000px){
+    header .header-brand{
+        font-size: 40px;
+        position: absolute;
+        left: 10%;
+        top: 4.5%;
+    } 
+    nav ul{
+        position: absolute;
+        left: 55%;
+        top: 0%;
+        text-transform: capitalize;
+    }
+    
+    nav ul li{
+        padding: 50px 30px 10px 30px; 
+    }
+
+}
