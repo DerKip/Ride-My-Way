@@ -125,6 +125,14 @@ nav ul li a{
     margin : 10px;
     width:calc(100%-20px);
 }
+.vl { /*vertical line*/
+    border-left: 1px solid #1c7f7f;
+    height: 100%;
+    position: absolute;
+    left: 115%;
+    top: 5%;
+    display: none;
+}
 
 /* ----------------------------------log in form----------------------- */
 .form{
@@ -190,4 +198,8 @@ nav ul li a{
         display: block;
         padding-top: 100px;
     }
+    .vl { /*vertical line*/
+        display: block;
+    }
+
 }
