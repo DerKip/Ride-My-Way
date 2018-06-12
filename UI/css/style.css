@@ -168,3 +168,6 @@ nav ul li a{
     color:#1A7770;
     font-size: 15px;
 }
+.form .register-form{
+    display: none;
+}

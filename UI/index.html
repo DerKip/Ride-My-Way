@@ -46,6 +46,12 @@
                     <button>Login</button>
                     <p class="message">Not Registered?  <a href="#">Register</a></p>
                 </form>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                <script>
+                        $('.message a').click(function(){
+                        $('form').animate({height:"toggle",opacity:"toggle"},"slow");
+                        });
+                    </script>
         </div>
     </section>
     </main>
