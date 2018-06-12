@@ -171,3 +171,23 @@ nav ul li a{
 .form .register-form{
     display: none;
 }
+/* -------------------------end of form----------------- */
+
+@media only screen and (min-width:1000px){
+    .form{
+        position: absolute;
+        left: 50%;
+        top:20%;
+    }
+    .index-banner{
+        width: 30%;
+        position: absolute;
+        left: 10%;
+        top: 19%;
+        display: block;
+    }
+    .index-banner img{
+        display: block;
+        padding-top: 100px;
+    }
+}
