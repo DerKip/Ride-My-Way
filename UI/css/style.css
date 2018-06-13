@@ -153,6 +153,7 @@ nav ul li a{
     box-sizing: border-box;
     font-size: 14px;
 }
+/* -----------buttons---------- */
 .form button{
     color: #fff;
     font-family: Raleway;
@@ -163,9 +164,28 @@ nav ul li a{
     font-size: 14px;
     cursor: pointer;
 }
+
+form.register-form button#btn-1{
+    width: 160px;
+    margin-right: 40px;
+}
+ 
+form.register-form button#btn-2{
+    width: 150px;
+}
+form.driver-form button#btn-1{
+    width: 160px;
+    margin-right: 40px;
+}
+ 
+form.driver-form button#btn-2{
+    width: 150px;
+}
+
 .form button:hover,.form button active{
     background:#1A7770;
 }
+/* ------- endof buttons-------- */
 .form .message{
     margin: 15px;
     font-family: Raleway;
@@ -176,9 +196,9 @@ nav ul li a{
     color:#1A7770;
     font-size: 15px;
 }
-.form .register-form{
+/* .form .register-form{
     display: none;
-}
+} */
 /* -------------------------end of form----------------- */
 
 @media only screen and (min-width:1000px){

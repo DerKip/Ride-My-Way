@@ -32,21 +32,46 @@
             <div class="vl"></div>  <!-- vertical line hidden on small&medium display -->
         </section>
         <section class="container-1">
-                <div class="form">
+
+            <div class="form">
                 <form action="" class="register-form">
                     <input type="text" placeholder="Username">
                     <input type="text" placeholder="Email">
                     <input type="password" placeholder="Password">
                     <input type="password" placeholder="Confirm Password">
-                    <button>Create</button>
-                    <p class="message">Already Resgisterd? <a href="#">Login</a></p>
+                <p class="message">Register as..</p>
+                <!-- <div class="log-in-as"> -->
+
+                        <button id="btn-1">User</button>
+                        <button id="btn-2">Driver</button>
+                <!-- </div> -->
+                    
+                <p class="message">Already Resgisterd? <a href="#">Login</a></p>
                 </form>
+
+                <form action="" class="driver-form">
+                        <input type="text" placeholder="Username">
+                        <input type="text" placeholder="Email">
+                        <input type="text" placeholder="Car Model">
+                        <input type="text" placeholder="Car RegNo">
+                        <input type="password" placeholder="Password">
+                        <input type="password" placeholder="Confirm Password">
+                    <p class="message">Register as..</p>
+                    <!-- <div class="log-in-as"> -->
+    
+                            <button id="btn-1">User</button>
+                            <button id="btn-2">Driver</button>
+                    <!-- </div> -->
+                        
+                    <p class="message">Already Resgisterd? <a href="#">Login</a></p>
+                    </form>
                 <form action="" class="login-form">
                     <input type="text" placeholder="Username">
                     <input type="password" placeholder="Password">
                     <button>Login</button>
                     <p class="message">Not Registered?  <a href="#">Register</a></p>
                 </form>
+                <script src="js/main.js"></script>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
                 <script>
                         $('.message a').click(function(){
