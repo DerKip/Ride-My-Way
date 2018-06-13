@@ -141,6 +141,7 @@ nav ul li a{
     margin: 0 auto 100px;
     padding: 45px;
     text-align: center;
+    box-shadow: 0px 3px 10px #cecdcd;
 }
 .form input{
     font-family: Raleway;
@@ -154,39 +155,28 @@ nav ul li a{
     font-size: 14px;
 }
 /* -----------buttons---------- */
-.form button{
+button{
+    background: #1c7f7f;
     color: #fff;
+    padding:10px;
+    border-radius: 4px;
+}
+.form button{
     font-family: Raleway;
-    background: #1c7f7f; 
     width: 100%;
     border: 0;
     padding:15px ;
     font-size: 14px;
     cursor: pointer;
+    
 }
-.form button#btn-1{
+.form button#Btn1{
     width: 160px;
     margin-right: 40px;
 }
-.form button#btn-2{
+.form button#Btn2{
     width: 150px;
 }
-/* form.register-form button#btn-1{
-    width: 160px;
-    margin-right: 40px;
-}
- 
-form.register-form button#btn-2{
-    width: 150px;
-}
-form.driver-form button#btn-1{
-    width: 160px;
-    margin-right: 40px;
-}
- 
-form.driver-form button#btn-2{
-    width: 150px;
-} */
 
 .form button:hover,.form button active{
     background:#1A7770;
@@ -235,3 +225,25 @@ form.driver-form button#btn-2{
     }
 
 }
+/* -------------------------tables------------------------- */
+#ResponsiveTable{
+    width: 70%;
+    margin: 50px 50px 0px 120px;
+    box-shadow: 0px 3px 10px #cecdcd;
+    color: #1A7770;
+}
+#HeadRow{
+    color: rgb(22, 88, 83);
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 500;
+    background-color:#f3f3f3;
+
+}
+tr:nth-of-type(odd){
+    background-color: #f2f2f2;
+}
+#ResponsiveTable td{
+    padding: 5px;
+}
+
+

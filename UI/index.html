@@ -37,8 +37,8 @@
 
                     <div class="option-button-container">
                         <p class="message">Register as..</p>
-                            <button id="btn-1">User</button>
-                            <button id="btn-2">Driver</button>
+                            <button id="Btn1">User</button>
+                            <button id="Btn2">Driver</button>
                         
                     </div>
                         
@@ -77,7 +77,7 @@
                         $('.option-button-container').animate({height:"toggle",opacity:"toggle"},"slow");
                         });
 
-                        $('#btn-1').click(function(){
+                        $('.option-button-container #Btn1').click(function(){
                             $('.driver-form').hide();
                             $('.register-form').hide();
                             $('.option-button-container').hide();
@@ -85,7 +85,7 @@
                             $('.register-form').animate({height:"toggle",opacity:"toggle"},"slow");
                             });
 
-                            $('#btn-2').click(function(){
+                            $('.option-button-container #Btn2').click(function(){
                                 $('.driver-form').hide();
                                 $('.register-form').hide();
                                 $('.option-button-container').hide();
