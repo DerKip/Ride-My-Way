@@ -12,7 +12,7 @@
 </head>
 <body>
     <header>
-    <a href="home.html" class="header-brand"><span>Ride</span>MyWay</a>
+    <a href="index.html" class="header-brand"><span>Ride</span>MyWay</a>
         <nav>
             <ul>
                 <!-- <li><a href="#"></a></li>
@@ -59,8 +59,6 @@
                         <input type="password" placeholder="Password">
                         <input type="password" placeholder="Confirm Password">
                         <button>Register</button>
-
-                
                 </form>
 
                 <form action="" class="login-form">
@@ -79,7 +77,21 @@
                         $('.option-button-container').animate({height:"toggle",opacity:"toggle"},"slow");
                         });
 
-                       
+                        $('#btn-1').click(function(){
+                            $('.driver-form').hide();
+                            $('.register-form').hide();
+                            $('.option-button-container').hide();
+                            $('.login-form').hide();
+                            $('.register-form').animate({height:"toggle",opacity:"toggle"},"slow");
+                            });
+
+                            $('#btn-2').click(function(){
+                                $('.driver-form').hide();
+                                $('.register-form').hide();
+                                $('.option-button-container').hide();
+                                $('.login-form').hide();
+                                $('.driver-form').animate({height:"toggle",opacity:"toggle"},"slow");
+                                });
                     </script>
         </div>
     </section>
