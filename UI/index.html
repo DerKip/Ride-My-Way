@@ -34,21 +34,23 @@
         <section class="container-1">
 
             <div class="form">
+
+                    <div class="option-button-container">
+                        <p class="message">Register as..</p>
+                            <button id="btn-1">User</button>
+                            <button id="btn-2">Driver</button>
+                        
+                    </div>
+                        
                 <form action="" class="register-form">
                     <input type="text" placeholder="Username">
                     <input type="text" placeholder="Email">
                     <input type="password" placeholder="Password">
                     <input type="password" placeholder="Confirm Password">
-                <p class="message">Register as..</p>
-                <!-- <div class="log-in-as"> -->
-
-                        <button id="btn-1">User</button>
-                        <button id="btn-2">Driver</button>
-                <!-- </div> -->
-                    
-                <p class="message">Already Resgisterd? <a href="#">Login</a></p>
+                    <button>Register</button>
                 </form>
 
+            
                 <form action="" class="driver-form">
                         <input type="text" placeholder="Username">
                         <input type="text" placeholder="Email">
@@ -56,15 +58,11 @@
                         <input type="text" placeholder="Car RegNo">
                         <input type="password" placeholder="Password">
                         <input type="password" placeholder="Confirm Password">
-                    <p class="message">Register as..</p>
-                    <!-- <div class="log-in-as"> -->
-    
-                            <button id="btn-1">User</button>
-                            <button id="btn-2">Driver</button>
-                    <!-- </div> -->
-                        
-                    <p class="message">Already Resgisterd? <a href="#">Login</a></p>
-                    </form>
+                        <button>Register</button>
+
+                
+                </form>
+
                 <form action="" class="login-form">
                     <input type="text" placeholder="Username">
                     <input type="password" placeholder="Password">
@@ -75,8 +73,13 @@
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
                 <script>
                         $('.message a').click(function(){
-                        $('form').animate({height:"toggle",opacity:"toggle"},"slow");
+                        $('.driver-form').hide();
+                        $('.register-form').hide();
+                        $('.login-form').hide();
+                        $('.option-button-container').animate({height:"toggle",opacity:"toggle"},"slow");
                         });
+
+                       
                     </script>
         </div>
     </section>
