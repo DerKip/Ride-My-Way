@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
+    <link rel="icon" href="img/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Raleway|Satisfy" rel="stylesheet">
+    <title>Ride My Way</title>
+
+</head>
+<body>
+    <header>
+    <a href="home.html" class="header-brand"><span>Ride</span>MyWay</a>
+        <nav>
+            <ul>
+                <!-- <li><a href="#"></a></li>
+                <li><a href="#"></a></li> -->
+                <li><a href="#">About us</a></li>
+            </ul>
+            
+        </nav>
+    </header>
+
+    <main>
+        <section class="index-banner">
+        <p>Welcome to RideMyWay! A <b>carpooling </b>app <br> that provides drivers 
+            with the ability to create ride offers and passengers to join in and share a ride.
+        </p>
+            <img src="img/car.png" alt="ride my way!">
+            <div class="vl"></div>  <!-- vertical line hidden on small&medium display -->
+        </section>
+        <section class="container-1">
+                <div class="form">
+                <form action="" class="register-form">
+                    <input type="text" placeholder="Username">
+                    <input type="text" placeholder="Email">
+                    <input type="password" placeholder="Password">
+                    <input type="password" placeholder="Confirm Password">
+                    <button>Create</button>
+                    <p class="message">Already Resgisterd? <a href="#">Login</a></p>
+                </form>
+                <form action="" class="login-form">
+                    <input type="text" placeholder="Username">
+                    <input type="password" placeholder="Password">
+                    <button>Login</button>
+                    <p class="message">Not Registered?  <a href="#">Register</a></p>
+                </form>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                <script>
+                        $('.message a').click(function(){
+                        $('form').animate({height:"toggle",opacity:"toggle"},"slow");
+                        });
+                    </script>
+        </div>
+    </section>
+    </main>
+</body>
+</html>
