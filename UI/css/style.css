@@ -81,6 +81,14 @@ nav ul li a{
     font-size: 16px;
     font-weight:500;
 }
+nav ul li a:hover{
+    box-shadow: 0 2px 0px #f2f2f2;
+    padding-bottom: 5px;  
+}
+.active{
+    box-shadow: 0 2px 0px #f2f2f2;
+    padding-bottom: 5px;
+}
 /* --------------------end of navbar----------------------- */
 
 @media only screen and (min-width:1000px){
@@ -228,7 +236,7 @@ button{
 /* -------------------------tables------------------------- */
 #ResponsiveTable{
     width: 70%;
-    margin: 50px 50px 0px 120px;
+    margin: 50px 50px 0px 200px;
     box-shadow: 0px 3px 10px #cecdcd;
     color: #1A7770;
 }
@@ -245,5 +253,3 @@ tr:nth-of-type(odd){
 #ResponsiveTable td{
     padding: 5px;
 }
-
-
