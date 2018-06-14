@@ -81,6 +81,14 @@ nav ul li a{
     font-size: 16px;
     font-weight:500;
 }
+nav ul li a:hover{
+    box-shadow: 0 2px 0px #f2f2f2;
+    padding-bottom: 5px;  
+}
+.active{
+    box-shadow: 0 2px 0px #f2f2f2;
+    padding-bottom: 5px;
+}
 /* --------------------end of navbar----------------------- */
 
 @media only screen and (min-width:1000px){
@@ -141,6 +149,7 @@ nav ul li a{
     margin: 0 auto 100px;
     padding: 45px;
     text-align: center;
+    box-shadow: 0px 3px 10px #cecdcd;
 }
 .form input{
     font-family: Raleway;
@@ -153,19 +162,35 @@ nav ul li a{
     box-sizing: border-box;
     font-size: 14px;
 }
-.form button{
+/* -----------buttons---------- */
+button{
+    background: #1c7f7f;
     color: #fff;
-    font-family: Raleway;
-    background: #1c7f7f; 
-    width: 100%;
+    padding:10px;
+    border-radius: 4px;
     border: 0;
-    padding:15px ;
-    font-size: 14px;
     cursor: pointer;
 }
-.form button:hover,.form button active{
+button:hover{
     background:#1A7770;
 }
+
+.form button{
+    font-family: Raleway;
+    width: 100%;
+    padding:15px ;
+    font-size: 14px;
+    
+}
+.form button#Btn1{
+    width: 160px;
+    margin-right: 40px;
+}
+.form button#Btn2{
+    width: 150px;
+}
+
+/* ------- endof buttons-------- */
 .form .message{
     margin: 15px;
     font-family: Raleway;
@@ -176,7 +201,13 @@ nav ul li a{
     color:#1A7770;
     font-size: 15px;
 }
+.option-button-container{
+    display: none;
+}
 .form .register-form{
+    display: none;
+}
+.form .driver-form{
     display: none;
 }
 /* -------------------------end of form----------------- */
@@ -202,4 +233,30 @@ nav ul li a{
         display: block;
     }
 
+}
+/* -------------------------tables------------------------- */
+#ResponsiveTable{
+    width: 70%;
+    margin: 50px 50px 0px 200px;
+    box-shadow: 0px 3px 10px #cecdcd;
+    color: #1A7770;
+}
+#TableTitle{
+    position:absolute; 
+    left:75%; 
+    top:19%; 
+    color:rgb(56, 56, 56,0.5);
+}
+#HeadRow{
+    color: rgb(22, 88, 83);
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 500;
+    background-color:#f3f3f3;
+
+}
+tr:nth-of-type(odd){
+    background-color: #f2f2f2;
+}
+#ResponsiveTable td{
+    padding: 5px;
 }

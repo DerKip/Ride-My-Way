@@ -12,15 +12,8 @@
 </head>
 <body>
     <header>
-    <a href="home.html" class="header-brand"><span>Ride</span>MyWay</a>
-        <nav>
-            <ul>
-                <!-- <li><a href="#"></a></li>
-                <li><a href="#"></a></li> -->
-                <li><a href="#">About us</a></li>
-            </ul>
-            
-        </nav>
+    <a href="index.html" class="header-brand"><span>Ride</span>MyWay</a>
+    
     </header>
 
     <main>
@@ -32,26 +25,66 @@
             <div class="vl"></div>  <!-- vertical line hidden on small&medium display -->
         </section>
         <section class="container-1">
-                <div class="form">
+
+            <div class="form">
+
+                    <div class="option-button-container">
+                        <p class="message">Register as..</p>
+                            <button id="Btn1">User</button>
+                            <button id="Btn2">Driver</button>
+                        
+                    </div>
+                        
                 <form action="" class="register-form">
                     <input type="text" placeholder="Username">
                     <input type="text" placeholder="Email">
                     <input type="password" placeholder="Password">
                     <input type="password" placeholder="Confirm Password">
-                    <button>Create</button>
-                    <p class="message">Already Resgisterd? <a href="#">Login</a></p>
+                    <button>Register</button>
                 </form>
+
+            
+                <form action="" class="driver-form">
+                        <input type="text" placeholder="Username">
+                        <input type="text" placeholder="Email">
+                        <input type="text" placeholder="Car Model">
+                        <input type="text" placeholder="Car RegNo">
+                        <input type="password" placeholder="Password">
+                        <input type="password" placeholder="Confirm Password">
+                        <button>Register</button>
+                </form>
+
                 <form action="" class="login-form">
                     <input type="text" placeholder="Username">
                     <input type="password" placeholder="Password">
-                    <button>Login</button>
+                    <button  formaction="offers.html">Login</button> <!-- temporary link to ride offer pages -->
                     <p class="message">Not Registered?  <a href="#">Register</a></p>
                 </form>
+                <script src="js/main.js"></script>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
                 <script>
                         $('.message a').click(function(){
-                        $('form').animate({height:"toggle",opacity:"toggle"},"slow");
+                        $('.driver-form').hide();
+                        $('.register-form').hide();
+                        $('.login-form').hide();
+                        $('.option-button-container').animate({height:"toggle",opacity:"toggle"},"slow");
                         });
+
+                        $('.option-button-container #Btn1').click(function(){
+                            $('.driver-form').hide();
+                            $('.register-form').hide();
+                            $('.option-button-container').hide();
+                            $('.login-form').hide();
+                            $('.register-form').animate({height:"toggle",opacity:"toggle"},"slow");
+                            });
+
+                            $('.option-button-container #Btn2').click(function(){
+                                $('.driver-form').hide();
+                                $('.register-form').hide();
+                                $('.option-button-container').hide();
+                                $('.login-form').hide();
+                                $('.driver-form').animate({height:"toggle",opacity:"toggle"},"slow");
+                                });
                     </script>
         </div>
     </section>
