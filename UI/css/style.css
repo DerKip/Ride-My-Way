@@ -168,14 +168,18 @@ button{
     color: #fff;
     padding:10px;
     border-radius: 4px;
+    border: 0;
+    cursor: pointer;
 }
+button:hover{
+    background:#1A7770;
+}
+
 .form button{
     font-family: Raleway;
     width: 100%;
-    border: 0;
     padding:15px ;
     font-size: 14px;
-    cursor: pointer;
     
 }
 .form button#Btn1{
@@ -186,9 +190,6 @@ button{
     width: 150px;
 }
 
-.form button:hover,.form button active{
-    background:#1A7770;
-}
 /* ------- endof buttons-------- */
 .form .message{
     margin: 15px;
@@ -239,6 +240,12 @@ button{
     margin: 50px 50px 0px 200px;
     box-shadow: 0px 3px 10px #cecdcd;
     color: #1A7770;
+}
+#TableTitle{
+    position:absolute; 
+    left:75%; 
+    top:19%; 
+    color:rgb(56, 56, 56,0.5);
 }
 #HeadRow{
     color: rgb(22, 88, 83);
