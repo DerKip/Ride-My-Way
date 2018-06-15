@@ -7,72 +7,83 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
     <link rel="icon" href="img/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Raleway|Satisfy" rel="stylesheet">
-    <title>Ride My Way - Rides Given</title>
+    <title>Ride My Way - Notifications</title>
 </head>
 
 <body>
     <header>
-    <a href="offers_driver.html" class="header-brand"><span>Ride</span>MyWay</a>
+    <a href="offers_user.html" class="header-brand"><span>Ride</span>MyWay</a>
         <nav>
             <ul>
-                <li><a href="offers_user.html">Ride offers</a></li>
+                <li><a class="active" href="offers_user.html">Ride offers</a></li>
                 <li><a href="#"></a></li>
-                <li><a href="driver.html">Profile</a></li>
+                <li><a href="profile.html">Profile</a></li>
             </ul>
             
         </nav>
     </header>
-    <div id="sidebar">
+<div id="sidebar">
     <div class="toggle-button"onclick="toggleSidebar()">
     <span></span>
     <span></span>
     <span></span>
     </div>
     <ul>
-        <li><a href="rides_response_driver.html">Notifications</a></li>
-        <li><a href="offers_driver.html">Availiable Rides</a></li>
-        <li><a href="requests.html">Requests</a></li>
-        <li><a href="rides_given.html">Rides Given</a></li>
-        <li><a href="rides_taken_driver.html">Rides taken</a></li>
+        <li><a href="rides_response_user.html">Notifications</a></li>
+        <li><a href="offers_user.html">Availiable Rides</a></li>
+        <li><a href="rides_taken_user.html">Rides taken</a></li>
         <li><a href="index.html">Logout</a></li>
-        <li>Offer a ride</li>
+        <li><a href="index.html">Become Driver</a></li>
     </ul>
-</div>
+</div>   
 
     <main>
-            
+        
         <table id="ResponsiveTable">
                 
-            <h3 id="TableTitle">Rides Given</h3> 
-            <tbody>
+            <h3 id="TableTitle">Rides to Join</h3> 
+            <tbody style="margin-right:90px; " >
                     <tr id="HeadRow">
                             <td><!--ID--></td>
-                            <td>Passenger</td>
+                            <td>Driver</td>
                             <td>From:</td> 
                             <td>To:</td>
-                            <td>Date</td>                   
+                            <td>Time</td>
+                            <td>Date</td> 
+                            <td>State</td>
+                            <td><!--Reject--></td>                  
+                           
                     </tr>
                         <tr>
                             <td>1</td>
                             <td>Jason Statham</td>
                             <td>Nairobi</td> 
                             <td>Limuru</td>
-                            <td>13-Jun-2018</td>                 
+                            <td>10:30</td>
+                            <td>13-Jun-2018</td>
+                            <td style="color:green;"id="">Accepted</td>
+                            <td style="color: #d32f2f;"id="">---</td>                
+                            
                         </tr>
                     <tr>
                             <td>2</td>
                             <td>Peter Oswago</td>
                             <td>Westlands</td> 
                             <td>Umoja</td>
-                            <td>12-Jan-2018</td>                 
-    
-                        </tr>
+                            <td>10:30</td>
+                            <td>12-Jan-2018</td> 
+                            <td style="color:green;"id="">---</td>
+                            <td style="color: #d32f2f;"id="">Rejected</td>                   
+                            
                     <tr>
                             <td>3</td>
                             <td>Christina Sass</td>
                             <td>Lavington</td> 
                             <td>Andela,offices</td>
-                            <td>13-march-2018</td>                 
+                            <td>10:30</td>
+                            <td>13-march-2018</td> 
+                            <td style="color:green;"id="">Accepted</td>
+                            <td style="color: #d32f2f;"id="">---</td>                    
                             
                         </tr>
                         
@@ -81,6 +92,7 @@
             </tbody>
             
         </table>
+        
         
     </main>
     <script src="js/main.js"></script>
