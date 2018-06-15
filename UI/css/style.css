@@ -277,6 +277,10 @@ tr:nth-of-type(odd){
     color: #f2f2f2;
     padding: 15px 10px;
     border-bottom: 1px solid #33363a; 
+    text-decoration: none;
+}
+#sidebar ul li a{
+    color:#f2f2f2;
 }
 #sidebar ul li:hover{
     background: #111;
@@ -296,5 +300,55 @@ tr:nth-of-type(odd){
     
 }
 
-
 /* ---------------endof side bar------------------------ */
+
+/* ---------------profile----- */
+
+.picbase{
+    display: block;
+    height: 25%;
+    background-color:#cecdcd;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1px;
+}
+.contentbase{
+    margin-top: 20px;
+    margin-bottom:0px;
+}
+#profpic{
+    border-radius: 100%;
+    box-shadow: 1px 2px 10px rgb(41, 41, 41); 
+    margin-top: 35px;
+    
+}
+.profiledetails{
+    color: teal;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+
+}
+.profiledetails ul{
+    list-style: none;
+}
+.profiledetails ul li{
+    display: inline-block;
+    padding: 10px 40px;
+}
+.profiledetails .details ul li{
+    padding: 0px 40px;
+    margin-right: 40px;
+    font-size: 15px;
+}
+.profiledetails .details ul li .upgrade-click:hover,{
+    cursor: pointer;
+}
+
+
+@media screen and (max-width:800px){
+    .picbase{
+        width: 100%;
+    }
+}
+/* -----------------------end of profile--------------------- */
