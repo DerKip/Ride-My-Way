@@ -151,6 +151,7 @@ nav ul li a:hover{
     text-align: center;
     box-shadow: 0px 3px 10px #cecdcd;
 }
+
 .form input{
     font-family: Raleway;
     outline:1;
@@ -161,6 +162,35 @@ nav ul li a:hover{
     padding:15px ;
     box-sizing: border-box;
     font-size: 14px;
+}
+
+.details-form{
+    background:#f2f2f2;
+    color: #164e4e;
+    max-width: 360px;
+    margin: auto ;
+    padding: 20px;
+    text-align: ltr;
+    box-shadow: 0px 3px 10px #cecdcd;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.details-form .content{
+    margin-top:20px; 
+}
+.details-form button{
+    width: 37%;
+    margin-right: 40px;
+    margin-top: 5px;
+}
+.details-form p {
+    padding: 5px;
+
+}
+.details-form p strong{
+    margin-right: 2px;
+}
+.details-form center #profpic{
+    margin-top:10px;
 }
 /* -----------buttons---------- */
 button{
@@ -272,6 +302,10 @@ tr:nth-of-type(odd){
 #ResponsiveTable td{
     padding: 5px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#ResponsiveTable td button a{
+    text-decoration: none;
+    color: #fff;
 }
 @media only screen and (max-width:800px){
     #TableTitle{
