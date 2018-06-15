@@ -260,3 +260,41 @@ tr:nth-of-type(odd){
 #ResponsiveTable td{
     padding: 5px;
 }
+/* ---------------side bar------------------------ */
+#sidebar{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: fixed;
+    background: #222427;
+    height: 100%;
+    width: 200px;
+    left: -200px;
+    transition: all 500ms linear;
+}
+#sidebar.active{
+    left: 0px;
+}
+#sidebar ul li{
+    color: #f2f2f2;
+    padding: 15px 10px;
+    border-bottom: 1px solid #33363a; 
+}
+#sidebar ul li:hover{
+    background: #111;
+}
+#sidebar .toggle-button{
+    position: absolute;
+    left: 230px;
+    top: 20px;
+    cursor: pointer;
+}
+#sidebar .toggle-button span{
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: #1c7f7f;
+    margin: 3px 0px;
+    
+}
+
+
+/* ---------------endof side bar------------------------ */
