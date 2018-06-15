@@ -232,7 +232,18 @@ button:hover{
     .vl { /*vertical line*/
         display: block;
     }
-
+    
+}
+@media only screen and (max-width:800px){
+    .form button#Btn1{
+        width: 160px;
+        margin:auto;
+    }
+    .form button#Btn2{
+        width: 160px;
+        margin-top: 20px;
+    }
+   
 }
 /* -------------------------tables------------------------- */
 #ResponsiveTable{
@@ -249,9 +260,9 @@ button:hover{
 }
 #HeadRow{
     color: rgb(22, 88, 83);
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: 500;
     background-color:#f3f3f3;
+    font-family:Raleway;
 
 }
 tr:nth-of-type(odd){
@@ -259,7 +270,17 @@ tr:nth-of-type(odd){
 }
 #ResponsiveTable td{
     padding: 5px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+@media only screen and (max-width:800px){
+    #TableTitle{
+        display: none;
+    }
+    #ResponsiveTable{
+        margin: auto;
+    }
+}
+
 /* ---------------side bar------------------------ */
 #sidebar{
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -341,12 +362,12 @@ tr:nth-of-type(odd){
     margin-right: 40px;
     font-size: 15px;
 }
-.profiledetails .details ul li .upgrade-click:hover,{
+.profiledetails .details ul li .upgrade-click:hover,:focus{
     cursor: pointer;
 }
 
 
-@media screen and (max-width:800px){
+@media only screen and (max-width:800px){
     .picbase{
         width: 100%;
     }
