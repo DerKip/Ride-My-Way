@@ -28,15 +28,41 @@
     <span></span>
     <span></span>
     </div>
-    <ul>
+     <ul>
         <li><a href="rides_response_driver.html">Notifications</a></li>
         <li><a href="offers_driver.html">Availiable Rides</a></li>
         <li><a href="requests.html">Requests</a></li>
         <li><a href="rides_given.html">Rides Given</a></li>
         <li><a href="rides_taken_driver.html">Rides taken</a></li>
         <li><a href="index.html">Logout</a></li>
-        <li>Offer a ride</li>
+        <li id="modalBtn" style="cursor:pointer;">Offer a ride</li>
     </ul>
+    <!-- Modal form for creating ride offer -->
+    <div id="simpleModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header"><span class="closeBtn" style="cursor:pointer;">&times;</span>
+                    <h3>Create Ride Offer</h3>
+                </div>
+
+                <div class="modal-body">
+                    <center>
+                            <form action="" class="ride-offer-form">
+                                    <input type="text" placeholder="Destination"><br>
+                                    <input type="text" placeholder="My Loaction"><br>
+                                    <input type="text" placeholder="Departure Time"><br>
+                                    <button >Create</button>
+                            </form> 
+                    </center>
+                         
+                </div>
+
+                <div class="modal-footer">
+                        <center><span>Ride</span>MyWay</center>
+                    </div>
+                
+            </div>
+        </div>
+    <!-- endof modal form-->
 </div>
 
     <main>
