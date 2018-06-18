@@ -21,3 +21,5 @@ app_config = {
     'testing': TestingConfig,
     'production': ProductionConfig,
 }
+
+default_config = app_config['development']
