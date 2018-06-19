@@ -1,0 +1,16 @@
+{
+  "tests/test_driver_ride_offers.py::DriverTestCase::test_driver_can_create_ride_offer": true,
+  "tests/test_driver_ride_offers.py::DriverTestCase::test_driver_can_get_a_single_ride_offer": true,
+  "tests/test_driver_ride_offers.py::DriverTestCase::test_driver_can_get_all_rides_offers": true,
+  "tests/test_driver_ride_offers.py::DriverTestCase::test_driver_can_see_created_ride_offers": true,
+  "tests/test_login_logout.py::LoginTestCase::test_driver_can_login": true,
+  "tests/test_login_logout.py::LoginTestCase::test_driver_can_logout": true,
+  "tests/test_login_logout.py::LoginTestCase::test_user_can_login": true,
+  "tests/test_login_logout.py::LoginTestCase::test_user_can_logout": true,
+  "tests/test_registration.py::RegistrationTestCase::test_one_can_register_as_driver": true,
+  "tests/test_registration.py::RegistrationTestCase::test_user_can_register": true,
+  "tests/test_user_ride_offers.py::UserTestCase::test_user_can_get_a_single_ride_offer": true,
+  "tests/test_user_ride_offers.py::UserTestCase::test_user_can_get_all_ride_offers": true,
+  "tests/test_user_ride_offers.py::UserTestCase::test_user_can_join_a_ride_offer": true,
+  "tests/test_user_ride_offers.py::UserTestCase::test_user_can_see_joined_ride_offers": true
+}

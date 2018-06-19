@@ -1,5 +1,5 @@
 from flask import Flask
-from app.config import app_config 
+from app.config import app_config
 
 def initialize_app(config_name="development"):
     """initializing app in development mode"""
