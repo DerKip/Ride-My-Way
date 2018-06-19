@@ -1,0 +1,4 @@
+{
+  "test_ride_my_way_api.py::RideMyWayTestCase::test_driver_can_create_ride_offer": true,
+  "test_ride_my_way_api.py::RideMyWayTestCase::test_driver_can_get_all_rides_offers": true
+}
