@@ -1,5 +1,7 @@
 from models.user import UserData
 
+drivers = []
+
 class DriverData(UserData):
     """This class stores drivers data"""
 
@@ -8,4 +10,4 @@ class DriverData(UserData):
         self.car_model = car_model
         self.car_regno = car_regno
 
-    drivers = []
+    

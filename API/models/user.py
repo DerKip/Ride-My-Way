@@ -1,4 +1,4 @@
-
+users = []
 class UserData():
     """This class stores user data"""
 
@@ -7,5 +7,5 @@ class UserData():
         self.email = email
         self.password = password
 
-    users = []
+    
     
