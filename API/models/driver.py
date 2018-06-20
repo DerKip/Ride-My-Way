@@ -5,8 +5,7 @@ class DriverData(UserData):
 
     def __init__(self, username,email,password,car_model,car_regno):
         super().__init__(username,email,password)
-        self.username = username
-        self.email = email
-        self.password = password
+        self.car_model = car_model
+        self.car_regno = car_regno
 
     drivers = []
