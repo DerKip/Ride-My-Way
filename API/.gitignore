@@ -2,3 +2,5 @@
 *.pyc
 *lastfailed 
 *nodeids
+/.cache
+/cache
