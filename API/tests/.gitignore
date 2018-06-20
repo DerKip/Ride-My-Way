@@ -1,6 +1,0 @@
-/.cache
-/cache
-*.pyc
-/.pytest_cache
-/__pycache__
-*lastfailed
