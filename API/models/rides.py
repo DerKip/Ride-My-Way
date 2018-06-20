@@ -31,6 +31,3 @@ class AcceptedRideOffers(JoinedRideOffers):
 
 
 
-new_passenger=AcceptedRideOffers('Mark','Westi','Umo',30,'10:00','James')
-print (new_passenger.__dict__)
-
