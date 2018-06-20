@@ -1,8 +1,4 @@
 venv
-*.pyc
-*lastfailed 
-*nodeids
-.cache/v/cache/
 __pycache__/
-.pytest_cache/v/cache/
+
 
