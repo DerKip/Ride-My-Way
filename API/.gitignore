@@ -2,7 +2,7 @@ venv
 *.pyc
 *lastfailed 
 *nodeids
-.cache/
+.cache/v/cache/
 __pycache__/
-.pytest_cache/
+.pytest_cache/v/cache/
 
