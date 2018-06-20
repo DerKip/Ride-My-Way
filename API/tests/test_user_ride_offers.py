@@ -1,20 +1,16 @@
 from tests.base_test import BaseTestCase
 
-import datetime
-
-
 class UserTestCase(BaseTestCase):
     """This class represents User requests test case"""
 
     def setUp(self):
         """Defining the test variable and initializing the app"""
         super().setUp()
-        departuretime=str(datetime.datetime.now())[:16]
         self.rideOffer={
             "id":1,
             "destination":"Kileleshwa",
             "my_location":"Pangani",
-            "depature_time":departuretime,
+            "depature_time":"10:30 AM",
             }
     
     def test_user_can_get_all_ride_offers(self):
