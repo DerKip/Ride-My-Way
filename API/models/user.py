@@ -7,5 +7,5 @@ class UserData():
         self.email = email
         self.password = password
 
-    users=[]
+    users = []
     
