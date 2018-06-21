@@ -1,22 +1,14 @@
 from models.user import UserData
 
 drivers = [{
-                "id":1,
-                "username":"Tabby",
-                "email":"tabby@gmail.com",
-                "car_model":"BMW",
-                "car_regno":"KBG 009T",
-                "password":"tabbytabbz",    
+                "car_model": "BMW",
+                "car_regno": "KBG 009T",
+                "email": "tabby@gmail.com",
+                "id": 3,
+                "password": "sha256$EKlzp9gg$e384a35d31484e4d2256a8ccac8a8d2327cf22a22ae7a4dd3e4efcdd21d454a0",
+                "username": "Tabby"    
                 },
-                {
-                "id":2,
-                "username":"John",
-                "email":"johnyy@gmail.com",
-                "car_model":"BENZ",
-                "car_regno":"KCG 909T",
-                "password":"yulemse",    
-                }]
-
+                ]
 class DriverData(UserData):
     """This class stores drivers data"""
 

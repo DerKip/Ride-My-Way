@@ -1,7 +1,7 @@
 from models import driver, user
 from models.user import UserData ,users
 from models.driver import DriverData ,drivers
-
+from werkzeug.security import generate_password_hash, check_password_hash
 from flask import request, jsonify
 import json
 from utils import JSON_MIME_TYPE, json_response
@@ -36,12 +36,13 @@ def register_new_driver():
         new_driver = DriverData(
                             given_data["username"],
                             given_data["email"],
-                            given_data["password"],
+                            generate_password_hash(given_data["password"],method='sha256'),
                             given_data["car_model"],
                             given_data["car_regno"]
                             )
         driver.drivers.append(new_driver.__dict__)
-        return jsonify({"message": " Registration Successfull"}),201
+        # return jsonify({"message": " Registration Successfull"}),201
+        return jsonify(driver.drivers)
     else:
         error = jsonify({"message":"User already exists!"})
         return json_response(error,409)
@@ -75,7 +76,7 @@ def register_new_user():
         new_user = UserData(
                             given_data["username"],
                             given_data["email"],
-                            given_data["password"],
+                            generate_password_hash(given_data["password"],method='sha256'),
                             )
         user.users.append(new_user.__dict__)
         return jsonify({"message": " Registration Successfull"}),201
