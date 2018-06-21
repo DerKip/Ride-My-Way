@@ -1,19 +1,15 @@
 from tests.base_test import BaseTestCase
 
-import datetime
-
-
 class DriverTestCase(BaseTestCase):
     """This class represents Driver requests test case"""
 
     def setUp(self):
         """Defining the test variable and initializing the app"""
         super().setUp()
-        departuretime=str(datetime.datetime.now())[:16]
         self.rideOffer={
             "destination":"Kileleshwa",
             "my_location":"Pangani",
-            "depature_time":departuretime,
+            "depature_time":"10:30 AM",
             }
         
     def test_driver_can_create_ride_offer(self):
