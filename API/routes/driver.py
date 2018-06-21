@@ -1,6 +1,8 @@
 from flask import Blueprint, jsonify, request, Response
 
 from app.controllers import registration_controller, rides_controller
+from models.rides import all_ride_offers
+
 from utils import JSON_MIME_TYPE, json_response
 
 driver_route = Blueprint("route_driver",__name__)
@@ -26,3 +28,11 @@ def create_ride():
         return json_response(error, 400)
 
     return rides_controller.create_new_ride_offer()
+
+
+
+@driver_route.route('/rides', methods=['GET'])
+def get_all_ride_offers():
+    """GET all ride offers endpoint"""
+    rides = jsonify(all_ride_offers)
+    return json_response(rides,200)

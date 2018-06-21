@@ -8,6 +8,7 @@ class BaseRidesClass():
     """ This class represents the Base Ride Offers Class """
 
     def __init__(self, driver, destination, from_location, price, departure_time):
+        self.id = len(all_ride_offers)+1
         self.driver = driver
         self.destination = destination
         self.from_location = from_location #location which ride is from
