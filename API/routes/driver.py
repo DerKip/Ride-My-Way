@@ -17,8 +17,6 @@ def register_driver():
         return json_response(error, 400)
     return registration_controller.register_new_driver()
     
-
-
 @driver_route.route('/create_ride', methods=['POST'])
 def create_ride():
     """Create ride offer endpoint"""
@@ -29,10 +27,14 @@ def create_ride():
 
     return rides_controller.create_new_ride_offer()
 
-
-
 @driver_route.route('/rides', methods=['GET'])
 def get_all_ride_offers():
     """GET all ride offers endpoint"""
     rides = jsonify(all_ride_offers)
     return json_response(rides,200)
+
+@driver_route.route('/rides/<int:id>', methods=['GET'])
+def get_single_ride_offer(id):
+    """GET single ride offer endpoint"""
+    single_ride_offer = [offer for offer in all_ride_offers if offer['id'] == id]
+    return jsonify({"Your Ride Offer:":single_ride_offer}),200

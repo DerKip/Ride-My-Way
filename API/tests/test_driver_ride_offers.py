@@ -31,10 +31,11 @@ class DriverTestCase(BaseTestCase):
 
     def test_driver_can_get_a_single_ride_offer(self):
         """Test driver can get a ride offer by id (GET request)"""
-        res = self.client().post(self.full_url('driver/ride'), data=self.rideOffer)
+        res = self.client().post(self.full_url('driver/create_ride'), data=json.dumps(dict(self.rideOffer)),
+        content_type='application/json')
         self.assertEqual(res.status_code, 201) #POST request on test ride offers
 
-        res = self.client().get(self.full_url('driver/ride_offers/1'))
+        res = self.client().get(self.full_url('driver/rides/1'))
         self.assertEqual(res.status_code,200)
     
     def test_driver_can_see_created_ride_offers(self):

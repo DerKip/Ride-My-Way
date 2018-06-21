@@ -5,7 +5,6 @@ from utils import JSON_MIME_TYPE, json_response
 
 user_route = Blueprint("route_user",__name__)
 
-
 @user_route.route('/register', methods=['POST'])
 def register_user():
     """user registration endpoint"""
@@ -15,13 +14,17 @@ def register_user():
         return json_response(error, 400)
     return registration_controller.register_new_user()
 
-
 @user_route.route('/rides', methods=['GET'])
 def get_all_ride_offers():
     """GET all ride offers endpoint"""
     rides = jsonify(all_ride_offers)
     return json_response(rides,200)
-    
+
+@user_route.route('/rides/<int:id>', methods=['GET'])
+def get_single_ride_offer(id):
+    """GET single ride offer endpoint"""
+    single_ride_offer = [offer for offer in all_ride_offers if offer['id'] == id]
+    return jsonify({"Your Ride Offer:":single_ride_offer}),200
 
 
     
