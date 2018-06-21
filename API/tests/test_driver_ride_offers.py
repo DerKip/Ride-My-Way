@@ -1,4 +1,5 @@
 from tests.base_test import BaseTestCase
+import json
 
 class DriverTestCase(BaseTestCase):
     """This class represents Driver requests test case"""
@@ -7,14 +8,16 @@ class DriverTestCase(BaseTestCase):
         """Defining the test variable and initializing the app"""
         super().setUp()
         self.rideOffer={
-            "destination":"Kileleshwa",
-            "my_location":"Pangani",
-            "depature_time":"10:30 AM",
-            }
+                        "destination":"Westlands",
+                        "from_location":"Pumu",
+                        "departure_time":"10:30",
+                        "price":"300"
+                        }
         
     def test_driver_can_create_ride_offer(self):
         """Test driver can create a ride offer (POST request)"""
-        res = self.client().post(self.full_url('driver/ride_offers'), data=self.rideOffer)
+        res = self.client().post(self.full_url('driver/create_ride'), data=json.dumps(dict(self.rideOffer)),
+        content_type='application/json')
         self.assertEqual(res.status_code, 201)
 
     def test_driver_can_get_all_rides_offers(self):
