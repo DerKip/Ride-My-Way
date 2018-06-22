@@ -23,13 +23,8 @@ def login_user():
         error = jsonify({'error': 'Invalid Content Type'})
         return json_response(error, 400)
     return login_controller.login()
+    # token = jwt.encode({'user':auth.username, 'exp':datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},)
 
-
-
-        # token = jwt.encode({'user':auth.username, 'exp':datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},)
-    error = jsonify({'error':'Could not verify!'})
-    return json_response(error,401,{'WWW-Authenticate':'Basic realm="Login Required"'})
-    
 @user_route.route('/rides', methods=['GET'])
 def get_all_ride_offers():
     """GET all ride offers endpoint"""
