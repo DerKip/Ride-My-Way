@@ -6,6 +6,7 @@ Andela Developer Challenge one
 [![GPL Licence](https://badges.frapsoft.com/os/gpl/gpl.svg?v=103)](https://opensource.org/licenses/GPL-3.0/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 ![GitHub last commit](https://img.shields.io/github/last-commit/DerKip/Ride-My-Way/develop.svg)
+[![Coverage Status](https://coveralls.io/repos/github/DerKip/Ride-My-Way/badge.svg?branch=ft-create-endpoints-158523680)](https://coveralls.io/github/DerKip/Ride-My-Way?branch=ft-create-endpoints-158523680)
 
 # Introduction
 
