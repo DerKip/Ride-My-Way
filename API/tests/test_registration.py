@@ -6,13 +6,13 @@ class RegistrationTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
         self.user = {
-            "username":"Derrick",
+            "username":"DerricKip",
             "email":"derrick97kirwa@gmail.com",
             "password":"#derkIp",
             "confirm_password":"#derkIp"
         }
         self.driver = {
-            "username":"Angela",
+            "username":"Angelina",
             "email":"Angelina@gmail.com",
             "car_model":"Mark x",
             "car_regno":"KCR 127F",
@@ -31,3 +31,22 @@ class RegistrationTestCase(BaseTestCase):
         res=self.client().post(self.full_url('driver/register'), data=json.dumps(dict(self.driver)),
         content_type='application/json')
         self.assertEqual(res.status_code,201) #created
+
+    def test_driver_cant_register_twice(self):
+        """test whether user a user can register as a driver"""
+        res=self.client().post(self.full_url('driver/register'), data=json.dumps(dict(self.driver)),
+        content_type='application/json')
+        self.assertEqual(res.status_code,201) #created
+        res=self.client().post(self.full_url('driver/register'), data=json.dumps(dict(self.driver)),
+        content_type='application/json')
+        self.assertEqual(res.status_code,409) #conflict
+
+    def test_user_cant_register_twice(self):
+        """test whether user can register"""
+        res=self.client().post(self.full_url('user/register'), data=json.dumps(dict(self.user)),
+        content_type='application/json')
+        self.assertEqual(res.status_code,201)
+        res=self.client().post(self.full_url('user/register'), data=json.dumps(dict(self.user)),
+        content_type='application/json')
+        self.assertEqual(res.status_code,409) #conflict
+

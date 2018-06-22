@@ -48,4 +48,6 @@ def login():
         return jsonify({
                         "error": "Password incorrect!",
                         }),400
-                        
+    return jsonify({
+                        "error": "User does not exist!",
+                        }),400       

@@ -41,8 +41,7 @@ def register_new_driver():
                             given_data["car_regno"]
                             )
         driver.drivers.append(new_driver.__dict__)
-        # return jsonify({"message": " Registration Successfull"}),201
-        return jsonify(driver.drivers)
+        return jsonify({"message": " Registration Successfull"}),201
     else:
         error = jsonify({"message":"User already exists!"})
         return json_response(error,409)
