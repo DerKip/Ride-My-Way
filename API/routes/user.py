@@ -1,5 +1,5 @@
-from flask import Blueprint, jsonify, request
-from app.controllers import registration_controller, login_controller
+from flask import Blueprint, jsonify, request, abort
+from app.controllers import registration_controller, login_controller ,rides_controller
 from models.rides import all_ride_offers
 from utils import JSON_MIME_TYPE, json_response
 import datetime
@@ -39,5 +39,24 @@ def get_all_ride_offers():
 def get_single_ride_offer(id):
     """GET single ride offer endpoint"""
     single_ride_offer = [offer for offer in all_ride_offers if offer['id'] == id]
+    if len(single_ride_offer) == 0:
+        abort(404)
     return jsonify({"Ride Offer:":single_ride_offer}),200
 
+@user_route.route('/rides/<int:id>/join', methods=['POST'])
+def join_ride_offer(id):
+    """Join ride endpoint"""
+    single_ride_offer = [offer for offer in all_ride_offers if offer['id'] == id]
+    if len(single_ride_offer) == 0:
+        return jsonify({"message":"Not Found !"}),404
+    else:
+        single_ride_offer[0]["joined"] = "user"
+    return jsonify({"message":"Successfully joined ride"}),200
+
+@user_route.route('/rides/joined',methods=['GET'])
+def get_all_joined_ride_offer():
+    """Get all Joined rides endpoint"""
+    joined_rides = [ ride for ride in all_ride_offers if ride.get("joined",None) == "user"]
+    if len(joined_rides) == 0:
+        return jsonify({"message":"No joined Rides!"}),404
+    return jsonify({"All joined rides":joined_rides}),200

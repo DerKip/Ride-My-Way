@@ -14,17 +14,5 @@ class BaseRidesClass():
         current_date = str(datetime.datetime.now())
         self.date_created = current_date[:10]
 
-class JoinedRideOffers(BaseRidesClass):
-    """ This class represents Ride Offers that have been joined """
-    def __init__(self, created_by, destination, from_location, price, departure_time,passenger):
-        super().__init__(created_by, destination, from_location, price, departure_time)
-        self.passenger = passenger
-
-class AcceptedRideOffers(JoinedRideOffers):
-    """ This class represents Ride Offers that have been joined and accepted """
-    def __init__(self, created_by, destination, from_location, price, departure_time,passenger,accepted=False):
-        super().__init__(created_by, destination, from_location, price, departure_time, passenger)
-        self.accepted = accepted
-
 
 

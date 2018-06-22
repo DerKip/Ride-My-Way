@@ -1,5 +1,5 @@
 from models import rides
-from models.rides import BaseRidesClass, all_ride_offers
+from models.rides import BaseRidesClass,  all_ride_offers
 
 from flask import request, jsonify
 import json
@@ -39,6 +39,7 @@ def create_new_ride_offer():
         rides.all_ride_offers.append(new_ride_offer.__dict__)
         return jsonify({"message": " Ride Offer Created Successfully"}),201
     
+
 
 
 
