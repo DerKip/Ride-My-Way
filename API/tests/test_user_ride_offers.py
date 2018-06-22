@@ -8,6 +8,7 @@ class UserTestCase(BaseTestCase):
         """Defining the test variable and initializing the app"""
         super().setUp()
         self.rideOffer={
+                        "created_by":"Mark",
                         "destination":"Westlands",
                         "from_location":"Pumu",
                         "departure_time":"10:30",

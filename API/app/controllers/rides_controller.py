@@ -10,6 +10,7 @@ def create_new_ride_offer():
     data = request.json
 
     given_data = {
+            "created_by":data.get("created_by"),
             "destination":data.get("destination"),
             "from_location":data.get("from_location"),
             "price":data.get("price"),
@@ -17,7 +18,7 @@ def create_new_ride_offer():
     }
 
     if not all( 
-                [ 
+                [ data.get("created_by"),
                   data.get("destination"),
                   data.get("from_location"),
                   data.get("price"),
@@ -29,7 +30,7 @@ def create_new_ride_offer():
    
     else:
         new_ride_offer = BaseRidesClass(
-                            'Created_by: driver',
+                           given_data["created_by"],
                             given_data["destination"],
                             given_data["from_location"],
                             given_data["price"],

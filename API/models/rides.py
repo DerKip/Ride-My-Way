@@ -7,9 +7,9 @@ accepted_ride_offers = []
 class BaseRidesClass():
     """ This class represents the Base Ride Offers Class """
 
-    def __init__(self, driver, destination, from_location, price, departure_time):
+    def __init__(self, created_by, destination, from_location, price, departure_time):
         self.id = len(all_ride_offers)+1
-        self.driver = driver
+        self.created_by = created_by
         self.destination = destination
         self.from_location = from_location #location which ride is from
         self.price = int(price) 
@@ -20,14 +20,14 @@ class BaseRidesClass():
 
 class JoinedRideOffers(BaseRidesClass):
     """ This class represents Ride Offers that have been joined """
-    def __init__(self, driver, destination, from_location, price, departure_time,passenger):
-        super().__init__(driver, destination, from_location, price, departure_time)
+    def __init__(self, created_by, destination, from_location, price, departure_time,passenger):
+        super().__init__(created_by, destination, from_location, price, departure_time)
         self.passenger = passenger
 
 class AcceptedRideOffers(JoinedRideOffers):
     """ This class represents Ride Offers that have been joined and accepted """
-    def __init__(self, driver, destination, from_location, price, departure_time,passenger,accepted=False):
-        super().__init__(driver, destination, from_location, price, departure_time, passenger)
+    def __init__(self, created_by, destination, from_location, price, departure_time,passenger,accepted=False):
+        super().__init__(created_by, destination, from_location, price, departure_time, passenger)
         self.accepted = accepted
 
 

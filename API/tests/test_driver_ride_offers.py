@@ -8,6 +8,7 @@ class DriverTestCase(BaseTestCase):
         """Defining the test variable and initializing the app"""
         super().setUp()
         self.rideOffer={
+                        "created_by":"paul",
                         "destination":"Westlands",
                         "from_location":"Pumu",
                         "departure_time":"10:30",
@@ -40,12 +41,14 @@ class DriverTestCase(BaseTestCase):
     
     def test_driver_can_see_created_ride_offers(self):
         """Test whether a driver can see ride offers he/she has created"""
-        res = self.client().post(self.full_url('driver/ride_offers'), data=self.rideOffer)
-        self.assertEqual(res.status_code, 201) #POST ride offer
+        res = self.client().post(self.full_url('driver/create_ride'), data=json.dumps(dict(self.rideOffer)),
+        content_type='application/json')
+        self.assertEqual(res.status_code, 201) #POST request on test ride offers
 
-        res = self.client().get(self.full_url('driver/ride_offers/created'))
-        self.assertEqual(res.status_code,200) #joined ride offer
-          
+        res = self.client().get(self.full_url('driver/rides/paul'))
+        self.assertEqual(res.status_code,200) 
+
+        
     
         
 

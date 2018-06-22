@@ -38,3 +38,9 @@ def get_single_ride_offer(id):
     """GET single ride offer endpoint"""
     single_ride_offer = [offer for offer in all_ride_offers if offer['id'] == id]
     return jsonify({"Your Ride Offer:":single_ride_offer}),200
+
+@driver_route.route('/rides/<string:driver>', methods=['GET'])
+def get_all_my_ride_offers(driver):
+    """GET all my ride offers endpoint"""
+    my_rides =[rides for rides in all_ride_offers if rides["created_by"] == driver]
+    return jsonify({(("{} ride offers").format(driver)):my_rides})

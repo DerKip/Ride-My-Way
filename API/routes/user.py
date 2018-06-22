@@ -28,12 +28,11 @@ def login_user():
 @user_route.route('/rides', methods=['GET'])
 def get_all_ride_offers():
     """GET all ride offers endpoint"""
-    rides = jsonify(all_ride_offers)
-    return json_response(rides,200)
+    return jsonify({"all ride offers":all_ride_offers}),200
 
 @user_route.route('/rides/<int:id>', methods=['GET'])
 def get_single_ride_offer(id):
     """GET single ride offer endpoint"""
     single_ride_offer = [offer for offer in all_ride_offers if offer['id'] == id]
-    return jsonify({"Your Ride Offer:":single_ride_offer}),200
+    return jsonify({"Ride Offer:":single_ride_offer}),200
 
