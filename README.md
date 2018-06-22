@@ -7,6 +7,7 @@ Andela Developer Challenge one
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 ![GitHub last commit](https://img.shields.io/github/last-commit/DerKip/Ride-My-Way/develop.svg)
 [![Coverage Status](https://coveralls.io/repos/github/DerKip/Ride-My-Way/badge.svg?branch=ft-create-endpoints-158523680)](https://coveralls.io/github/DerKip/Ride-My-Way?branch=ft-create-endpoints-158523680)
+[![Build Status](https://travis-ci.org/DerKip/Ride-My-Way.svg?branch=ft-create-endpoints-158523680)](https://travis-ci.org/DerKip/Ride-My-Way)
 
 # Introduction
 
