@@ -25,6 +25,11 @@ def login_user():
     return login_controller.login()
     # token = jwt.encode({'user':auth.username, 'exp':datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},)
 
+@user_route.route('/logout', methods=['DELETE'])
+def logout_user():
+    """user logout endpoint"""
+    return jsonify({"message":"Successfully logged out"}),200
+
 @user_route.route('/rides', methods=['GET'])
 def get_all_ride_offers():
     """GET all ride offers endpoint"""

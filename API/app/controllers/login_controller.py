@@ -35,7 +35,7 @@ def login():
                         "error": "password incorrect!",
                         }),400
 
-    #Check if username exists in the in the driver model                  
+    #Check if username exists in the in the user model                  
     if any(d.get('username', None) == given_data["username"] for d in user.users):
         #place the driver data in a dict
         user_data = [ x for x in user.users if x["username"]== given_data["username"]][0]

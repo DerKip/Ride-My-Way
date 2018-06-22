@@ -1,9 +1,5 @@
 import datetime
-
 all_ride_offers = []
-joined_ride_offers = []
-accepted_ride_offers = []
-
 class BaseRidesClass():
     """ This class represents the Base Ride Offers Class """
 

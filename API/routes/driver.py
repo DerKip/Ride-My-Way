@@ -16,6 +16,11 @@ def register_driver():
         error = jsonify({'error': 'Invalid Content Type'})
         return json_response(error, 400)
     return registration_controller.register_new_driver()
+
+@driver_route.route('/logout', methods=['DELETE'])
+def logout_driver():
+    """Driver logout endpoint"""
+    return jsonify({"message":"Successfully logged out"}),200
     
 @driver_route.route('/create_ride', methods=['POST'])
 def create_ride():

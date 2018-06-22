@@ -38,18 +38,12 @@ class LoginTestCase(BaseTestCase):
         self.assertEqual(res.status_code,200)
 
     def test_driver_can_logout(self):
-        """Test whether driver can logout"""
-        res = self.client().post(self.full_url('/login'), data = self.driver)
-        self.assertEqual(res.status_code,200) #login first 
-
-        res = self.client().delete(self.full_url('driver/logout'), data = self.driver)
+        """Test whether driver logout"""
+        res = self.client().delete(self.full_url('driver/logout'))
         self.assertEqual(res.status_code,200) #logout
 
     def test_user_can_logout(self):
         """Test whether user can logout"""
-        res = self.client().post(self.full_url('/login'), data = self.user)
-        self.assertEqual(res.status_code,200) #login first 
-
-        res = self.client().delete(self.full_url('user/logout'), data = self.user)
+        res = self.client().delete(self.full_url('user/logout'))
         self.assertEqual(res.status_code,200) #logout
     
