@@ -1,1 +1,1 @@
-web: gunicorn --chdir API/ run:app
+web: gunicorn  API/ run:app
