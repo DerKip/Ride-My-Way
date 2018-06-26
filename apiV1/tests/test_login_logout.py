@@ -1,4 +1,4 @@
-from tests.base_test import BaseTestCase
+from ..tests.base_test import BaseTestCase
 import json
 class LoginTestCase(BaseTestCase):
     """This class represents login test case""" 

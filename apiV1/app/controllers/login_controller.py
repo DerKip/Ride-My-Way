@@ -1,6 +1,6 @@
-from models import driver, user
-from models.user import users
-from models.driver import drivers
+from ...models import driver, user
+from ...models.user import users
+from ...models.driver import drivers
 from werkzeug.security import check_password_hash
 from flask import request, jsonify
 import json

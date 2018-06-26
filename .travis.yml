@@ -7,7 +7,8 @@ install:
   - pip install -r requirements.txt
 
 script:
-  - nosetests --with-coverage 
+  - cd apiV1
+  - nosetests --with-coverage --cover-package=routes tests/*
 
 after_success: 
   - coveralls

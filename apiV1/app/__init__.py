@@ -1,7 +1,7 @@
 from flask import Flask
-from app.config import app_config
-from routes.driver import driver_route
-from routes.user import user_route ,user_driver_route
+from config import app_config
+from ..routes.driver import driver_route 
+from ..routes.user import user_route ,user_driver_route
 
 
 def initialize_app(config_name="development"):

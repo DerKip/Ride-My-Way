@@ -1,6 +1,6 @@
-from models import driver, user
-from models.user import UserData ,users
-from models.driver import DriverData ,drivers
+from ...models import driver, user
+from ...models.user import UserData ,users
+from ...models.driver import DriverData ,drivers
 from werkzeug.security import generate_password_hash
 from flask import request, jsonify
 import json

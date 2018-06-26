@@ -1,6 +1,6 @@
 import unittest
 
-from app import initialize_app
+from ..app import initialize_app
 
 class BaseTestCase(unittest.TestCase):
     """Set up Base Test Class"""

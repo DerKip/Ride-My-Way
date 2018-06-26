@@ -1,5 +1,5 @@
-from models import rides
-from models.rides import BaseRidesClass,  all_ride_offers
+from ...models import rides
+from ...models.rides import BaseRidesClass,  all_ride_offers
 
 from flask import request, jsonify
 import json

@@ -1,4 +1,4 @@
-from models.user import UserData
+from ..models.user import UserData
 
 drivers = [{
                 "car_model": "BMW",

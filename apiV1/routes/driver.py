@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request, Response
 
-from app.controllers import registration_controller, rides_controller
-from models.rides import all_ride_offers
+from ..app.controllers import registration_controller, rides_controller
+from ..models.rides import all_ride_offers
 
 from utils import JSON_MIME_TYPE, json_response
 
