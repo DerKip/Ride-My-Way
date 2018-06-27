@@ -1,0 +1,134 @@
+FORMAT: 1A
+HOST: https://rmw-api.herokuapp.com/api/v1/
+
+
+# Ride-My-Way
+
+## Project Overview
+ Ride-My-Way is a carpooling application that provides drivers with the ability to create ride offers and passengers to join available ride offers
+## Required Features
+1. Users can create an account and log in.
+2. Drivers can add ride offers..
+3. Passengers can view all available ride offers.
+4. Passengers can see the details of a ride offer and request to join the ride. E.g What time the ride leaves, where it is headed e.t.c
+5. Drivers can view the requests to the ride offer they created.
+6. Drivers can either accept or reject a ride request.
+
+Making the API requests will require the following header
+```
+Content-Type : application/json
+```
+
+## Registration [v1/user/register ]
+
+### Register [POST]
+
+Creates a new user account, which a user can use to login with their username and password.
+
++ Request (application/json)
+
+        {
+            "username": "Derrick",
+            "email": "derrick97kirwa@gmail.com",
+            "password": "password",
+        }
+        
++ Response 201 (application/json)
+      ```{
+         "message": "Registration Successful"
+         }```
+       
+#### If the Registration credentials already exists in the model,
++ Respose 409 (application/json) ```{"message":"User already exists!"}```
+
+## Login [/login]
+
+### Login [POST]
+
+The user can login with their username and password. 
+Both normal users and drivers will login here.
+
++ Request (application/json)
+
+        {
+            "username": "Derrick"
+            "password": "password"
+        }
+        
++ Response 200 (application/json)
+
+        {
+                "message": "Login successfull!",
+                "status": "Passenger"
+        }
+        
++ Response 200 (application/json)
+
+        {
+         "message": "Login successfull!",
+         "status": "Driver"
+         }
+
+## Driver POST a Rise offer [/driver/create_ride]
+
+### Create a ride offer [POST]
+
+A drive can create a ride offer. The offer will be available to the users who can join
+
++ Request (application/json)
+
+        {
+         "destination":"Westlands",
+         "from_location":"Pumu",
+         "departure_time":"10:30",
+         "price":"300",
+        }
+
++ Response 201 (application/json)
+
+        {
+           "message": " Ride Offer Created Successfully"
+        }
+        
+### Get all ride offers [GET]
+Users Can see get all the available ride offers 
++ Request (application/json)
++ Response 200 (application/json)
+
+        {
+           
+          "all ride offers":[
+                             {
+                                "created_by": "Jandoe",
+                                "date_created": "2018-06-26",
+                                "departure_time": "10:30",
+                                "destination": "Westlands",
+                                "from_location": "Umoja",
+                                "id": 1,
+                                "price": 300
+                             }
+            ]
+        }
+
+
+## User Join Ride [/user/ridess/{ride_id}/join]
+### Join ride offer [POST]
+
+A drive can ca ride offer. The offer will be available to the users who can join
++ Parameters
+    + ride_id (integer) - Id of the ride the user wants to get details and Join.
+## Driver POST a Rise offer [/driver/create_ride]
++ Request (application/json)
+
+        {
+         "destination":"Westlands",
+         "from_location":"Pumu",
+         "departure_time":"10:30",
+         "price":"300",
+        }
+
++ Response 201 (application/json)
+
+        {
+           "message": " Ride Offer Created Successfully"
+        }
