@@ -73,6 +73,12 @@ def get_users():
     users = db.cur.fetchall()
     return users
 
+def get_user(user):
+    db.cur.execute("SELECT * FROM users WHERE username = (%s)",(user,))
+    db.conn.commit()
+    user = db.cur.fetchone()
+    return user
+
 class Rides():
     def __init__(self, created_by, destination, from_location, price, departure_time):
         self.created_by = created_by

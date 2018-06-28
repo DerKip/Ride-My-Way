@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request, abort
-from ..app.controllers import registration_controller
+from ..app.controllers import registration_controller, login_controller
 from ..models.models import User ,get_users
 from utils import JSON_MIME_TYPE, json_response
 import datetime
@@ -16,20 +16,20 @@ def register_user():
         return json_response(error, 400)
     return registration_controller.register_new_user()
 
+@auth.route('/login', methods=['POST'])
+def login_user():
+    """login user endpoint"""
+    if request.content_type != JSON_MIME_TYPE:
+        error = jsonify({'error': 'Invalid Content Type'})
+        return json_response(error, 400)
+    return login_controller.login()
+
 @user_route.route('/users', methods=['GET'])
 def get_all_users():
     """GET all ride offers endpoint"""
     users = get_users()
     return jsonify({"all users": users}),200
 
-
-# @user_driver_route.route('/login', methods=['POST'])
-# def login_user():
-#     """login user endpoint"""
-#     if request.content_type != JSON_MIME_TYPE:
-#         error = jsonify({'error': 'Invalid Content Type'})
-#         return json_response(error, 400)
-#     return login_controller.login()
     # token = jwt.encode({'user':auth.username, 'exp':datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},)
 
 # @user_route.route('/logout', methods=['DELETE'])
