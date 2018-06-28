@@ -1,7 +1,4 @@
-
 from ...models.models import User ,get_users
-
-# from ...models.driver import DriverData ,drivers
 from werkzeug.security import generate_password_hash
 from flask import request, jsonify
 import json
@@ -42,53 +39,10 @@ def register_new_user():
                     given_data["contact"]
                     )
     all_users = get_users()
-    if new_user in all_users:
-        error = jsonify({"message":"User already exists!"})
-        return json_response(error,409)
-    else:
-        new_user.create_user()
-        return jsonify({"message":"Registration Successfull"}),201
-
-
-
-# def register_new_user():
-#     """ register a new driver """
-#     data = request.json
-
-#     given_data = {
-#             "username":data.get("username"),
-#             "email":data.get("email"),
-#             "password":data.get("password")
-#     }
-
-#     if not all( 
-#                 [ 
-#                   data.get("username"),
-#                   data.get("email"),
-#                   data.get("password")
-#                 ]
-#             ):
-#         error = jsonify({'error': 'Missing field/s'})
-#         return json_response(error, 400)
-    
-    
-#     if not any(d.get('username', None) == given_data["username"] for d in user.users):
-#         # checks if user name exists in the driver model and creates new object if not
-#         new_user = UserData(
-#                             given_data["username"],
-#                             given_data["email"],
-#                             generate_password_hash(given_data["password"],method='sha256'),
-#                             )
-#         user.users.append(new_user.__dict__)
-#         return jsonify({"message": " Registration Successfull"}),201
-#     else:
-#         error = jsonify({"message":"User already exists!"})
-#         return json_response(error,409)
- 
-    
-       
-    
-
-    
-     
-
+    for user in all_users:
+        if user["username"]== new_user.username:
+            return jsonify({"message":"User already exists!"}),409
+        elif user["email"]== new_user.email:
+            return jsonify({"message":"Email already exists!"}),409
+    new_user.create_user()
+    return jsonify({"message":"Registration Successfull"}),201
