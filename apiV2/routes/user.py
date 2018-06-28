@@ -20,7 +20,7 @@ def register_user():
 def get_all_users():
     """GET all ride offers endpoint"""
     users = get_users()
-    return jsonify({"all ride offers": users}),200
+    return jsonify({"all users": users}),200
 
 
 # @user_driver_route.route('/login', methods=['POST'])
