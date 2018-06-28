@@ -18,7 +18,8 @@ def main():
             email VARCHAR(255),
             password VARCHAR(255),        
             car_model VARCHAR(255),
-            car_regno VARCHAR(255)
+            car_regno VARCHAR(255),
+            contact VARCHAR(255)
             )
             """)
         db.query("""CREATE TABLE rides(
@@ -46,7 +47,10 @@ def main():
 
     except psycopg2.Error:
         raise SystemExit("Failed {}".format(sys.exc_info()))
+ 
 
 
 if __name__ == "__main__":
     main()
+
+print ("--------- CREATED TABLES ---------")
