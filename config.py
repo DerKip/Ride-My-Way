@@ -13,6 +13,7 @@ class Config():
     DATABASE_PASSWORD= os.getenv("DATABASE_PASSWORD")
     DATABASE_HOST= os.getenv("DATABASE_HOST")
     DATABASE_URL = os.getenv("DATABASE_URL")
+    JWT_SECRET_KEY = 'my-secret-long-secret-string'
 
 class DevelopmentConfig(Config):
     """Configurations for Development."""

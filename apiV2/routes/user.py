@@ -1,9 +1,9 @@
-from flask import Blueprint, jsonify, request, abort
+from flask import Blueprint, jsonify, request
+from apiV2 import app
 from ..app.controllers import registration_controller, login_controller
 from ..models.models import User ,get_users
 from utils import JSON_MIME_TYPE, json_response
 import datetime
-
 
 user_route = Blueprint("route_user",__name__)
 auth= Blueprint("authenctiactaion",__name__)
