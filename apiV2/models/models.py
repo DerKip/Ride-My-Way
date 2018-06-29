@@ -3,6 +3,7 @@ from .database import Database
 from psycopg2.extras import RealDictCursor
 from apiV2 import app
 from werkzeug.security import generate_password_hash, check_password_hash
+import datetime
 
 db = Database(app)
 
@@ -86,6 +87,7 @@ class Rides():
         self.from_location = from_location
         self.price = price
         self.departure_time = departure_time
+        self.date_created = str(datetime.datetime.now())[:10]
 
     def create_ride(self):
         db.cur.execute("""INSERT INTO rides (created_by, destination, from_location, price, departure_time)

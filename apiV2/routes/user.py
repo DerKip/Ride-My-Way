@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from apiV2 import app
-from ..app.controllers import registration_controller, login_controller
+from ..app.controllers import registration_controller, login_controller, rides_controller
+from flask_jwt_extended import jwt_required,  get_jwt_identity
 from ..models.models import User ,get_users
 from utils import JSON_MIME_TYPE, json_response
 import datetime
@@ -30,7 +31,15 @@ def get_all_users():
     users = get_users()
     return jsonify({"all users": users}),200
 
-    # token = jwt.encode({'user':auth.username, 'exp':datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},)
+      
+@user_route.route('/rides', methods=['POST'])
+def create_ride():
+    user_id = get_jwt_identity()
+    """Create ride offer endpoint"""
+    if request.content_type != JSON_MIME_TYPE:
+        error = jsonify({'error': 'Invalid Content Type'})
+        return json_response(error, 400)
+    return rides_controller.create_new_ride_offer(user_id)
 
 # @user_route.route('/logout', methods=['DELETE'])
 # def logout_user():
