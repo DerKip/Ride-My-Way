@@ -109,8 +109,8 @@ def get_all_rides():
     return rides
 
 
-def get_ride_by_id(ride_id):
-    db.cur.execute("SELECT * FROM rides WHERE id = (%s)",(ride_id))
+def get_ride_by_id(rideid):
+    db.cur.execute("SELECT * FROM rides WHERE id = (%s)",(rideid,))
     db.conn.commit()
     ride_id = db.cur.fetchone()
     return ride_id

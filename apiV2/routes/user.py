@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request
 from apiV2 import app
 from ..app.controllers import registration_controller, login_controller, rides_controller
 from flask_jwt_extended import jwt_required,  get_jwt_identity
-from ..models.models import User,get_users, get_all_rides
+from ..models.models import User,get_users, get_all_rides, get_ride_by_id
 from utils import JSON_MIME_TYPE, json_response
 import datetime
 
@@ -47,19 +47,18 @@ def get_all_ride_offers():
     """GET all ride offers endpoint"""
     return jsonify({"all ride offers":get_all_rides()}),200
 
+@user_route.route('/rides/<rideid>', methods=['GET'])
+def get_single_ride_offer(rideid):
+    """GET single ride offer endpoint"""
+    return jsonify({"Ride Offer:":get_ride_by_id(rideid)}),200
+
+
 
 # @user_route.route('/logout', methods=['DELETE'])
 # def logout_user():
 #     """user logout endpoint"""
 #     return jsonify({"message":"Successfully logged out"}),200
 
-# @user_route.route('/rides/<int:id>', methods=['GET'])
-# def get_single_ride_offer(id):
-#     """GET single ride offer endpoint"""
-#     single_ride_offer = [offer for offer in all_ride_offers if offer['id'] == id]
-#     if len(single_ride_offer) == 0:
-#         abort(404)
-#     return jsonify({"Ride Offer:":single_ride_offer}),200
 
 # @user_route.route('/rides/<int:id>/join', methods=['POST'])
 # def join_ride_offer(id):
