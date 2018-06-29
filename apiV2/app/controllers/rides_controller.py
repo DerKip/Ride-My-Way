@@ -4,11 +4,11 @@ from flask_jwt_extended import JWTManager, jwt_required, create_access_token, ge
 import json
 from utils import JSON_MIME_TYPE, json_response
 
-def create_new_ride_offer(user_id ):
+def create_new_ride_offer(created_by):
     """ Creates a new ride offer """
     data = request.json
     given_data = {
-            "created_by":user_id,
+            "created_by":created_by,
             "destination":data.get("destination"),
             "from_location":data.get("from_location"),
             "price":data.get("price"),

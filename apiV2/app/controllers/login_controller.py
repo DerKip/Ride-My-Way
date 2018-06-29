@@ -1,7 +1,7 @@
 from ...models.models import User ,get_user
 from werkzeug.security import check_password_hash
 from flask import request, jsonify
-from flask_jwt_extended import JWTManager, jwt_required, create_access_token, get_jwt_identity
+from flask_jwt_extended import  jwt_required, create_access_token, get_jwt_identity
 import json
 from utils import JSON_MIME_TYPE, json_response
 
@@ -26,7 +26,7 @@ def login():
         return jsonify({"error": "User does not exist!"}),400
     elif check_password_hash(login_visitor["password"],given_data["password"]) == True:
         # Give access token 
-        access_token = create_access_token(identity = login_visitor["id"])
+        access_token = create_access_token(identity = login_visitor["username"])
         return jsonify({"message": "Login successfull!","token":access_token}),202
     return jsonify({"message": "password incorrect!"}),401
 
