@@ -102,14 +102,14 @@ class Rides():
                         )
         db.conn.commit()
     
-def get_all_rides(self):
+def get_all_rides():
     db.cur.execute("SELECT * FROM rides")
     db.conn.commit()
     rides = db.cur.fetchall()
     return rides
 
 
-def get_ride_by_id(self,ride_id):
+def get_ride_by_id(ride_id):
     db.cur.execute("SELECT * FROM rides WHERE id = (%s)",(ride_id))
     db.conn.commit()
     ride_id = db.cur.fetchone()
