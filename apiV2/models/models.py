@@ -3,6 +3,7 @@ from .database import Database
 from psycopg2.extras import RealDictCursor
 from apiV2 import app
 from werkzeug.security import generate_password_hash, check_password_hash
+import datetime
 
 db = Database(app)
 
@@ -68,7 +69,7 @@ def initialize():
     db.conn.commit()
 
 def get_users():
-    db.cur.execute("SELECT * FROM users")
+    db.cur.execute("SELECT id, username, email, car_model, car_regno FROM users")
     db.conn.commit()
     users = db.cur.fetchall()
     return users
@@ -86,6 +87,7 @@ class Rides():
         self.from_location = from_location
         self.price = price
         self.departure_time = departure_time
+        self.date_created = str(datetime.datetime.now())[:10]
 
     def create_ride(self):
         db.cur.execute("""INSERT INTO rides (created_by, destination, from_location, price, departure_time)
@@ -100,15 +102,15 @@ class Rides():
                         )
         db.conn.commit()
     
-def get_all_rides(self):
+def get_all_rides():
     db.cur.execute("SELECT * FROM rides")
     db.conn.commit()
     rides = db.cur.fetchall()
     return rides
 
 
-def get_ride_by_id(self,ride_id):
-    db.cur.execute("SELECT * FROM rides WHERE id = (%s)",(ride_id))
+def get_ride_by_id(rideid):
+    db.cur.execute("SELECT * FROM rides WHERE id = (%s)",(rideid,))
     db.conn.commit()
     ride_id = db.cur.fetchone()
     return ride_id
@@ -119,3 +121,26 @@ def get_driver_rides(created_by):
     db.conn.commit()
     driver_rides = db.cur.fetchall()
     return driver_rides
+
+class Requests():
+    def __init__(self, created_by, destination, from_location, price, departure_time):
+        self.created_by = created_by
+        self.destination = destination
+        self.from_location = from_location
+        self.price = price
+        self.departure_time = departure_time
+        self.date_created = str(datetime.datetime.now())[:10]
+
+    def create_ride(self):
+        db.cur.execute("""INSERT INTO rides (created_by, destination, from_location, price, departure_time)
+                             VALUES(%s,%s,%s,%s,%s)""",
+                            (
+                                self.created_by,
+                                self.destination,
+                                self.from_location,
+                                self.price,
+                                self.departure_time
+                            )
+                        )
+        db.conn.commit()
+    
