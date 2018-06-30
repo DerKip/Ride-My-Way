@@ -16,7 +16,7 @@ def create_new_ride_offer(created_by):
     }
 
     if not all( 
-                [ data.get("created_by"),
+                [ 
                   data.get("destination"),
                   data.get("from_location"),
                   data.get("price"),

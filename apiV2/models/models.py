@@ -81,13 +81,13 @@ def get_user(user):
     return user
 
 class Rides():
-    def __init__(self, created_by, destination, from_location, price, departure_time):
+    def __init__(self, created_by, destination, from_location, price ,departure_time, date_created =''):
         self.created_by = created_by
         self.destination = destination
         self.from_location = from_location
         self.price = price
         self.departure_time = departure_time
-        self.date_created = str(datetime.datetime.now())[:10]
+        self.date_created = datetime.datetime.now()
 
     def create_ride(self):
         db.cur.execute("""INSERT INTO rides (created_by, destination, from_location, price, departure_time)
@@ -97,7 +97,8 @@ class Rides():
                                 self.destination,
                                 self.from_location,
                                 self.price,
-                                self.departure_time
+                                self.departure_time,
+        
                             )
                         )
         db.conn.commit()
@@ -123,23 +124,18 @@ def get_driver_rides(created_by):
     return driver_rides
 
 class Requests():
-    def __init__(self, created_by, destination, from_location, price, departure_time):
-        self.created_by = created_by
-        self.destination = destination
-        self.from_location = from_location
-        self.price = price
-        self.departure_time = departure_time
-        self.date_created = str(datetime.datetime.now())[:10]
+    def __init__(self, requestor,ride_id,response):
+        self.requestor = requestor
+        self.ride_id = ride_id
+        self.response = response
 
     def create_ride(self):
-        db.cur.execute("""INSERT INTO rides (created_by, destination, from_location, price, departure_time)
-                             VALUES(%s,%s,%s,%s,%s)""",
+        db.cur.execute("""INSERT INTO requests (requestor, ride_id, response)
+                             VALUES(%s,%s,%s)""",
                             (
-                                self.created_by,
-                                self.destination,
-                                self.from_location,
-                                self.price,
-                                self.departure_time
+                                self.requestor,
+                                self.ride_id,
+                                self.response
                             )
                         )
         db.conn.commit()

@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from ..app.controllers import registration_controller, login_controller, rides_controller
-from flask_jwt_extended import jwt_required,  get_jwt_identity 
+from flask_jwt_extended import jwt_required,  get_jwt_identity  
 from ..models.models import User,get_users, get_all_rides, get_ride_by_id
 from utils import JSON_MIME_TYPE, json_response
 import datetime
@@ -24,11 +24,11 @@ def login_user():
         return json_response(error, 400)
     return login_controller.login()
 
-@auth.route('/logout', methods=['DELETE'])
-@jwt_required
-def logout_user():
-    """user logout endpoint"""
-    return login_controller.logout()
+# @auth.route('/logout', methods=['DELETE'])
+# @jwt_required
+# def logout_user():
+#     """user logout endpoint"""
+#     return login_controller.logout()
 
 
 @user_route.route('/users', methods=['GET'])
@@ -61,8 +61,8 @@ def get_single_ride_offer(rideid):
 
 @user_route.route('/rides/<rideid>/request', methods=['POST'])
 @jwt_required
-def join_ride_offer(ride):
-    """Join ride endpoint"""
+def make_ride_request(ride):
+    """Make request to join ride endpoint"""
     return jsonify({"message":"Successfully joined ride"}),200
 
 
