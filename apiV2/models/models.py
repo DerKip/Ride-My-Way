@@ -1,5 +1,6 @@
 import psycopg2
 from .database import Database
+from flask import jsonify
 from psycopg2.extras import RealDictCursor
 from apiV2 import app
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -155,9 +156,21 @@ def get_request_id(requestid):
     return request_id
 
 def get_all_requests(rideid):
-    db.cur.execute("""  SELECT username, contact, ride_id FROM users
+    db.cur.execute("""  SELECT username, contact, ride_id, requests.id FROM users
                         INNER JOIN requests on users.id = requests.user_id
                         WHERE requests.ride_id = (%s)""",(rideid,))
     db.conn.commit()
     requests = db.cur.fetchall()
     return requests
+
+def insert_response(status,requestid):
+    if status == "Accept":
+        db.cur.execute(""" UPDATE requests SET status = 'Accepted' WHERE id = (%s) """,(requestid,))          
+        db.conn.commit()
+    elif status == "Reject":
+        db.cur.execute(""" UPDATE requests SET status = 'Rejected' WHERE id = (%s) """,(requestid,)) 
+        db.conn.commit()
+    else:
+        return jsonify({"message":"Insert correct response, either Accept or Reject"}),405
+
+    

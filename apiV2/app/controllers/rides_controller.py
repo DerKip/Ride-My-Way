@@ -10,7 +10,7 @@ def create_new_ride_offer(created_by):
     given_data = {
             "created_by":created_by,
             "destination":data.get("destination"),
-            "from_location":data.get("from_location"),
+            "from_location":data.get("from_location"), 
             "price":data.get("price"),
             "departure_time":data.get("departure_time")
     }

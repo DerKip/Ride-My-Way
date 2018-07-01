@@ -37,7 +37,7 @@ def main():
             user_id INTEGER REFERENCES users(id),
             ride_id INTEGER REFERENCES rides(id),
             response VARCHAR(255) DEFAULT 'no_response',
-            status VARCHAR(255) 
+            status VARCHAR(255) DEFAULT 'pending'
         )
             """)
 
