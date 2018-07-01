@@ -8,9 +8,9 @@ db = Database(app)
 
 def main():
     try:
-        db.query("""DROP TABLE IF EXISTS users""")
-        db.query("""DROP TABLE IF EXISTS rides""")
-        db.query("""DROP TABLE IF EXISTS requests""")
+        db.query("""DROP TABLE IF EXISTS users CASCADE """)
+        db.query("""DROP TABLE IF EXISTS rides CASCADE""")
+        db.query("""DROP TABLE IF EXISTS requests CASCADE""")
        
         db.query("""CREATE TABLE users(
             id serial PRIMARY KEY,
@@ -27,18 +27,17 @@ def main():
             created_by VARCHAR(255),
             destination VARCHAR(255),
             from_location VARCHAR(255),
-            price INTEGER,
+            price VARCHAR DEFAULT 'FREE',
             departure_time VARCHAR(255),
-            date_created VARCHAR(255)
+            date_created TIMESTAMP DEFAULT NOW()
         )
             """)
         db.query("""CREATE TABLE requests(
             id serial PRIMARY KEY,
-            ride_id INTEGER,
-            username VARCHAR(255),
-            email VARCHAR(255),
-            contact VARCHAR(255),
-            status VARCHAR(255)
+            user_id INTEGER REFERENCES users(id),
+            ride_id INTEGER REFERENCES rides(id),
+            response VARCHAR(255) DEFAULT 'no_response',
+            status VARCHAR(255) 
         )
             """)
 

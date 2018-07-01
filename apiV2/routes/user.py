@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from ..app.controllers import registration_controller, login_controller, rides_controller
-from flask_jwt_extended import jwt_required,  get_jwt_identity 
-from ..models.models import User,get_users, get_all_rides, get_ride_by_id
+from flask_jwt_extended import jwt_required,  get_jwt_identity  
+from ..models.models import User,get_users, get_username, get_all_rides, get_ride_by_id 
 from utils import JSON_MIME_TYPE, json_response
 import datetime
 
@@ -24,11 +24,11 @@ def login_user():
         return json_response(error, 400)
     return login_controller.login()
 
-@auth.route('/logout', methods=['DELETE'])
-@jwt_required
-def logout_user():
-    """user logout endpoint"""
-    return login_controller.logout()
+# @auth.route('/logout', methods=['DELETE'])
+# @jwt_required
+# def logout_user():
+#     """user logout endpoint"""
+#     return login_controller.logout()
 
 
 @user_route.route('/users', methods=['GET'])
@@ -40,7 +40,8 @@ def get_all_users():
 @user_route.route('/rides', methods=['POST'])
 @jwt_required
 def create_ride():
-    user_id = get_jwt_identity()
+    user = get_jwt_identity() 
+    user_id = get_username(user)
     """Create ride offer endpoint"""
     if request.content_type != JSON_MIME_TYPE:
         error = jsonify({'error': 'Invalid Content Type'})
@@ -61,10 +62,10 @@ def get_single_ride_offer(rideid):
 
 @user_route.route('/rides/<rideid>/request', methods=['POST'])
 @jwt_required
-def join_ride_offer(ride):
-    """Join ride endpoint"""
-    return jsonify({"message":"Successfully joined ride"}),200
-
-
+def ride_request(rideid):
+    """Make request to join ride endpoint"""
+    ride_dict= dict(get_ride_by_id(rideid))
+    rides_controller.make_ride_request(ride_dict["id"])
+    return jsonify({"Message":"Successfully placed your request"},{"Ride Offer:":get_ride_by_id(rideid)}),200
 
 
