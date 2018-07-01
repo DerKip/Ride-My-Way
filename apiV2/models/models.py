@@ -154,8 +154,10 @@ def get_request_id(requestid):
     request_id= db.cur.fetchone()
     return request_id
 
-def get_all_requests():
-    db.cur.execute("SELECT * FROM requests")
+def get_all_requests(rideid):
+    db.cur.execute("""  SELECT username, contact, ride_id FROM users
+                        INNER JOIN requests on users.id = requests.user_id
+                        WHERE requests.ride_id = (%s)""",(rideid,))
     db.conn.commit()
     requests = db.cur.fetchall()
     return requests

@@ -44,4 +44,3 @@ def make_ride_request(ride_id):
     return  new_request.create_request()
 
 
- 

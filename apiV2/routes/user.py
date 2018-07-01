@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from ..app.controllers import registration_controller, login_controller, rides_controller
 from flask_jwt_extended import jwt_required,  get_jwt_identity  
-from ..models.models import User,get_users, get_username, get_all_rides, get_ride_by_id 
+from ..models.models import User,get_users, get_username, get_all_rides, get_ride_by_id ,get_all_requests
 from utils import JSON_MIME_TYPE, json_response
 import datetime
 
@@ -67,5 +67,16 @@ def ride_request(rideid):
     ride_dict= dict(get_ride_by_id(rideid))
     rides_controller.make_ride_request(ride_dict["id"])
     return jsonify({"Message":"Successfully placed your request"},{"Ride Offer:":get_ride_by_id(rideid)}),200
+
+@user_route.route('/rides/<rideid>/requests', methods=['GET'])
+@jwt_required
+def fetch_all_ride_requests(rideid):
+    """Fetch all requests of a ride offer  endpoint"""
+    all_ride_requests = get_all_requests(rideid)
+    if len(all_ride_requests) == 0:
+        return jsonify({"Message":"No requests sent to this ride offer"}),404
+    return jsonify({"Your responses so far":all_ride_requests}),200
+
+
 
 
