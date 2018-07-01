@@ -51,18 +51,16 @@ def initialize():
             created_by VARCHAR(255),
             destination VARCHAR(255),
             from_location VARCHAR(255),
-            price INTEGER,
+            price VARCHAR DEFAULT 'FREE',
             departure_time VARCHAR(255),
-            date_created VARCHAR(255)
+            date_created TIMESTAMP DEFAULT NOW()
         )
             """)
     db.query("""CREATE TABLE requests(
             id serial PRIMARY KEY,
-            ride_id INTEGER,
-            username VARCHAR(255),
-            email VARCHAR(255),
-            contact VARCHAR(255),
-            status VARCHAR(255)
+            user_id INTEGER REFERENCES users(id),
+            ride_id INTEGER REFERENCES rides(id),
+            response CHAR DEFAULT 'no responses'
         )
             """)
 
@@ -76,9 +74,19 @@ def get_users():
 
 def get_user(user):
     db.cur.execute("SELECT * FROM users WHERE username = (%s)",(user,))
-    db.conn.commit()
+    db.conn.commit() 
     user = db.cur.fetchone()
     return user
+
+def get_user_by_id(userid):
+    db.cur.execute("SELECT * FROM users WHERE id = (%s)",(userid,))
+    db.conn.commit() 
+    user_id = db.cur.fetchone()
+    return user_id
+
+def get_username(userid):
+    user_dict= dict(get_user_by_id(userid))
+    return user_dict["username"]
 
 class Rides():
     def __init__(self, created_by, destination, from_location, price ,departure_time, date_created =''):
@@ -124,19 +132,30 @@ def get_driver_rides(created_by):
     return driver_rides
 
 class Requests():
-    def __init__(self, requestor,ride_id,response):
-        self.requestor = requestor
+    def __init__(self,user_id,ride_id,response):
+        self.user_id = user_id
         self.ride_id = ride_id
         self.response = response
 
-    def create_ride(self):
-        db.cur.execute("""INSERT INTO requests (requestor, ride_id, response)
+    def create_request(self):
+        db.cur.execute("""INSERT INTO requests (user_id, ride_id, response)
                              VALUES(%s,%s,%s)""",
                             (
-                                self.requestor,
+                                self.user_id,
                                 self.ride_id,
                                 self.response
                             )
                         )
         db.conn.commit()
-    
+
+def get_request_id(requestid):
+    db.cur.execute("SELECT * FROM requests WHERE id = (%s)",(requestid,))
+    db.conn.commit()
+    request_id= db.cur.fetchone()
+    return request_id
+
+def get_all_requests():
+    db.cur.execute("SELECT * FROM requests")
+    db.conn.commit()
+    requests = db.cur.fetchall()
+    return requests

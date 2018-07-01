@@ -1,4 +1,4 @@
-from ...models.models import  Rides
+from ...models.models import  Rides, Requests ,get_all_requests
 from flask import request, jsonify
 from flask_jwt_extended import JWTManager, jwt_required, create_access_token, get_jwt_identity
 import json
@@ -19,7 +19,6 @@ def create_new_ride_offer(created_by):
                 [ 
                   data.get("destination"),
                   data.get("from_location"),
-                  data.get("price"),
                   data.get("departure_time")
                 ]
             ):
@@ -37,7 +36,12 @@ def create_new_ride_offer(created_by):
         new_ride_offer.create_ride()
         return jsonify({"Created_ride_offer":new_ride_offer.__dict__}),201
 
-
+def make_ride_request(ride_id):
+    """Makes a request to join a ride offer"""
+    user_id = get_jwt_identity()
+    response ='Interested'
+    new_request = Requests(user_id,ride_id,response)
+    return  new_request.create_request()
 
 
  

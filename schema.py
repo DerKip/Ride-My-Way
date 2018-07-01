@@ -27,7 +27,7 @@ def main():
             created_by VARCHAR(255),
             destination VARCHAR(255),
             from_location VARCHAR(255),
-            price INTEGER,
+            price VARCHAR DEFAULT 'FREE',
             departure_time VARCHAR(255),
             date_created TIMESTAMP DEFAULT NOW()
         )
@@ -36,7 +36,8 @@ def main():
             id serial PRIMARY KEY,
             user_id INTEGER REFERENCES users(id),
             ride_id INTEGER REFERENCES rides(id),
-            response CHAR DEFAULT 'no responses'
+            response VARCHAR(255) DEFAULT 'no_response',
+            status VARCHAR(255) 
         )
             """)
 
