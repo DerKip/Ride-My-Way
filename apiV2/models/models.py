@@ -31,41 +31,6 @@ class User():
                           )
         db.conn.commit()
 
-def drop():
-    db.query("""DROP TABLE IF EXISTS user""")
-    db.query("""DROP TABLE IF EXISTS rides""")
-    db.query("""DROP TABLE IF EXISTS requests""")
-    db.conn.commit()
-
-def initialize():
-    db.query("""CREATE TABLE users(
-            id serial PRIMARY KEY,
-            username VARCHAR(255),
-            email VARCHAR(255),
-            password VARCHAR(255),        
-            car_model VARCHAR(255),
-            car_regno VARCHAR(255)
-            )
-            """)
-    db.query("""CREATE TABLE rides(
-            id serial PRIMARY KEY,
-            created_by VARCHAR(255),
-            destination VARCHAR(255),
-            from_location VARCHAR(255),
-            price VARCHAR DEFAULT 'FREE',
-            departure_time VARCHAR(255),
-            date_created TIMESTAMP DEFAULT NOW()
-        )
-            """)
-    db.query("""CREATE TABLE requests(
-            id serial PRIMARY KEY,
-            user_id INTEGER REFERENCES users(id),
-            ride_id INTEGER REFERENCES rides(id),
-            response CHAR DEFAULT 'no responses'
-        )
-            """)
-
-    db.conn.commit()
 
 def get_users():
     db.cur.execute("SELECT id, username, email, car_model, car_regno FROM users")
@@ -173,4 +138,44 @@ def insert_response(status,requestid):
     else:
         return jsonify({"message":"Insert correct response, either Accept or Reject"}),405
 
-    
+
+# For tests
+
+def drop():
+    db.query("""DROP TABLE IF EXISTS users CASCADE """)
+    db.query("""DROP TABLE IF EXISTS rides CASCADE""")
+    db.query("""DROP TABLE IF EXISTS requests CASCADE""")
+    db.conn.commit()
+
+def initialize():
+    db.query("""CREATE TABLE users(
+            id serial PRIMARY KEY,
+            username VARCHAR(255),
+            email VARCHAR(255),
+            password VARCHAR(255),        
+            car_model VARCHAR(255),
+            car_regno VARCHAR(255),
+            contact VARCHAR(255)
+            )
+            """)
+    db.query("""CREATE TABLE rides(
+        id serial PRIMARY KEY,
+        created_by VARCHAR(255),
+        destination VARCHAR(255),
+        from_location VARCHAR(255),
+        price VARCHAR DEFAULT 'FREE',
+        departure_time VARCHAR(255),
+        date_created TIMESTAMP DEFAULT NOW()
+    )
+        """)
+    db.query("""CREATE TABLE requests(
+        id serial PRIMARY KEY,
+        user_id INTEGER REFERENCES users(id),
+        ride_id INTEGER REFERENCES rides(id),
+        response VARCHAR(255) DEFAULT 'no_response',
+        status VARCHAR(255) DEFAULT 'pending'
+    )
+        """)
+
+    db.conn.commit()
+
