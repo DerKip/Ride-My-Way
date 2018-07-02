@@ -25,13 +25,6 @@ def login_user():
         return json_response(error, 400)
     return login_controller.login()
 
-# @auth.route('/logout', methods=['DELETE'])
-# @jwt_required
-# def logout_user():
-#     """user logout endpoint"""
-#     return login_controller.logout()
-
-
 @user_route.route('/users', methods=['GET'])
 def get_all_users():
     """GET all users endpoint"""
@@ -82,9 +75,11 @@ def fetch_all_ride_requests(rideid):
 @jwt_required
 def accept_reject_response(rideid,requestid):
     """Accept or reject ride offer endpoint"""
+    if get_ride_by_id(rideid) == None:
+        return jsonify ({"message":"None-existent ride id"}),404
     status = request.json.get("Response")
     insert_response(status,requestid) 
-    return jsonify({"Response_to_ride_offer":status},{"Request":get_request_id(rideid)}),200
+    return jsonify({"Response_to_ride_offer":status},{"Request":get_request_id(requestid)}),200
 
 
 
