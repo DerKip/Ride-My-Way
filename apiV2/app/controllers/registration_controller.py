@@ -40,6 +40,9 @@ def register_new_user():
     if given_data["password"] != given_data["confirm_password"]:
         return jsonify({"message":" Your passwords do no match"}),400
 
+    if not validate_email(given_data["email"]):
+        return jsonify({"message":"Email is invalid"}), 400
+
     new_user = User(
                     given_data["username"],
                     given_data["email"],
