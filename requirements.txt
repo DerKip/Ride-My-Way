@@ -1,4 +1,6 @@
+aadict==0.2.3
 aniso8601==3.0.0
+asset==0.6.12
 astroid==1.6.2
 attrs==17.4.0
 autoenv==1.0.0
@@ -17,6 +19,7 @@ Flask-JWT-Extended==3.10.0
 Flask-RESTful==0.3.5
 Flask-Testing==0.7.1
 Flask-WTF==0.14.2
+globre==0.1.5
 gunicorn==19.8.1
 idna==2.7
 ipython==6.4.0
@@ -30,6 +33,7 @@ MarkupSafe==1.0
 mccabe==0.6.1
 nose==1.3.7
 parso==0.2.1
+passwordmeter==0.1.8
 pep8==1.7.1
 pickleshare==0.7.4
 pipenv==11.9.0
@@ -50,6 +54,7 @@ simplegeneric==0.8.1
 six==1.11.0
 traitlets==4.3.2
 urllib3==1.23
+validate-email==1.3
 virtualenv==15.2.0
 virtualenv-clone==0.3.0
 wcwidth==0.1.7
