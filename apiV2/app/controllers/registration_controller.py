@@ -35,7 +35,7 @@ def register_new_user():
     meter = passwordmeter.Meter(settings=dict(factors='length,charmix'))
     strength, improvements = meter.test(given_data["password"])
     if strength < 0.2:
-        return jsonify({"Your password is too week, Consider this improvements":improvements}),400
+        return jsonify({"Your password is too weak, Consider this improvements":improvements}),400
 
     if given_data["password"] != given_data["confirm_password"]:
         return jsonify({"message":" Your passwords do no match"}),400
