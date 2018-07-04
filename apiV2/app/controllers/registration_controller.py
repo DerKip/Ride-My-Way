@@ -20,7 +20,9 @@ def register_new_user():
             "password":data.get("password"),
             "confirm_password":data.get("confirm_password")
     }
-
+    if given_data["username"] == None or given_data["email"] == None or given_data["contact"] or given_data["password"] == None:
+        error = jsonify({'error': 'Required field/s Missing'})
+        return  json_response(error, 400)
     if not all( 
                 [ 
                   data.get("username"),
@@ -29,8 +31,9 @@ def register_new_user():
                   data.get("password")
                 ]
             ):
+        
         error = jsonify({'error': 'Required field/s Missing'})
-        return json_response(error, 400)
+        return  json_response(error, 400)
     # check password strength using passwordmeter module
     meter = passwordmeter.Meter(settings=dict(factors='length,charmix'))
     strength, improvements = meter.test(given_data["password"])
