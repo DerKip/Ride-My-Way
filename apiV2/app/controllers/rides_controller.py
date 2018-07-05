@@ -15,15 +15,12 @@ def create_new_ride_offer(created_by):
             "departure_time":data.get("departure_time")
     }
 
-    if not all( 
-                [ 
-                  data.get("destination"),
-                  data.get("from_location"),
-                  data.get("departure_time")
-                ]
-            ):
-        error = jsonify({'error': 'Missing field/s'})
-        return json_response(error, 400)
+    if given_data["destination"] is not None and given_data["destination"].strip() == "":
+        return jsonify({'error': 'Required field/s Missing'}), 400
+    if given_data["from_location"] is not None and given_data["from_location"].strip() == "":
+        return jsonify({'error': 'Required field/s Missing'}), 400
+    if given_data["departure_time"] is not None and given_data["departure_time"].strip() == "":
+        return jsonify({'error': 'Required field/s Missing'}), 400
    
     else:
         new_ride_offer = Rides(
