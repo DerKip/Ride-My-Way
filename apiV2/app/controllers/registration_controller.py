@@ -2,15 +2,13 @@ from ...models.models import User ,get_users
 from werkzeug.security import generate_password_hash
 from flask import request, jsonify
 from utils import JSON_MIME_TYPE, json_response
-from validate_email import validate_email
+import re
 import passwordmeter
-import sys
 import json
 
 def register_new_user():
     """ register a new driver """
     data = request.json
-
     given_data = {
             "username":data.get("username"),
             "email":data.get("email"),
@@ -20,7 +18,6 @@ def register_new_user():
             "password":data.get("password"),
             "confirm_password":data.get("confirm_password")
     }
-
     if given_data["username"] is not None and given_data["username"].strip() == "":
         return jsonify({'error': 'Required field/s Missing'}), 400
     if given_data["email"] is not None and given_data["email"].strip() == "":
@@ -30,20 +27,16 @@ def register_new_user():
     if given_data["password"] is not None and given_data["password"].strip() == "":
         return jsonify({'error': 'Required field/s Missing'}), 400
     if given_data["confirm_password"] is not None and given_data["confirm_password"].strip() == "":
-        return jsonify({'error': 'Required field/s Missing'}), 400
-        
+        return jsonify({'error': 'Required field/s Missing'}), 400        
     # check password strength using passwordmeter module
     meter = passwordmeter.Meter(settings=dict(factors='length,charmix'))
     strength, improvements = meter.test(given_data["password"])
     if strength < 0.2:
         return jsonify({"Your password is too weak, Consider this improvements":improvements}),400
-
     if given_data["password"] != given_data["confirm_password"]:
         return jsonify({"message":" Your passwords do no match"}),400
-
-    if not validate_email(given_data["email"]):
-        return jsonify({"message":"Email is invalid"}), 400
-
+    if not re.match(r"[^@]+@[^@]+\.[^@]+", given_data["email"]):
+        return jsonify({"error":"Your email is invalid"}),400
     new_user = User(
                     given_data["username"],
                     given_data["email"],
