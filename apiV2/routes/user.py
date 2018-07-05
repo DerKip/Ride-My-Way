@@ -64,7 +64,12 @@ def get_single_ride_offer(rideid):
 @jwt_required
 def ride_request(rideid):
     """Make request to join ride endpoint"""
-    ride_dict= dict(get_ride_by_id(rideid))
+    user = get_jwt_identity() 
+    username = get_username(user)
+    ride_dict = get_ride_by_id(rideid)
+    #checks if the creater of the ride is still the requestor
+    if ride_dict["created_by"] == username:
+        return jsonify({"error":"You can't make a request for your own ride"}),405
     rides_controller.make_ride_request(ride_dict["id"])
     return jsonify({"Message":"Successfully placed your request"},{"Ride Offer:":get_ride_by_id(rideid)}),200
 
