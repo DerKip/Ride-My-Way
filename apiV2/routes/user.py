@@ -56,6 +56,8 @@ def get_all_ride_offers():
 @jwt_required
 def get_single_ride_offer(rideid):
     """GET single ride offer endpoint"""
+    if get_ride_by_id(rideid) is None:
+        return jsonify({"error":"No ride offer found"}),404
     return jsonify({"Ride Offer:":get_ride_by_id(rideid)}),200
 
 @user_route.route('/rides/<rideid>/request', methods=['POST'])
