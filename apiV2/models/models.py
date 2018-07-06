@@ -140,6 +140,7 @@ def get_all_requests(rideid):
     requests = db.cur.fetchall()
     return requests
 
+
 def insert_response(status,requestid):
     if status == "Accept":
         db.cur.execute(""" UPDATE requests SET status = 'Accepted' WHERE id = (%s) """,(requestid,))          

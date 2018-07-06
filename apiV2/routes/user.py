@@ -88,6 +88,12 @@ def accept_reject_response(rideid,requestid):
     """Accept or reject ride offer endpoint"""
     if get_ride_by_id(rideid) == None:
         return jsonify ({"message":"None-existent ride id"}),404
+
+    user = get_jwt_identity()
+    ride = get_ride_by_id(rideid)
+    username = get_username(user)3
+    if ride["created_by"] != username:
+        return jsonify({"error":"You have no privilleges to access this ride offer "}),405
     status = request.json.get("Response")
     insert_response(status,requestid) 
     return jsonify({"Response_to_ride_offer":status},{"Request":get_request_id(requestid)}),200
