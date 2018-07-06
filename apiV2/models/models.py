@@ -97,11 +97,17 @@ def get_ride_by_id(rideid):
     return ride
 
 def get_driver_rides(created_by):
-    db.cur.execute(
-        "SELECT * FROM rides WHERE created_by = (%s)", (created_by))
+    db.cur.execute("SELECT * FROM rides WHERE created_by = (%s)", (created_by,))
     db.conn.commit()
-    driver_rides = db.cur.fetchall()
-    return driver_rides
+    rides = db.cur.fetchall()
+    return rides
+
+def get_ride_user_time(username,departure_time):
+    db.cur.execute(
+        "SELECT * FROM rides WHERE departure_time = (%s) AND created_by = (%s)", (departure_time,username))
+    db.conn.commit()
+    rides = db.cur.fetchall()
+    return rides
 
 class Requests():
     def __init__(self,user_id,ride_id,response):
