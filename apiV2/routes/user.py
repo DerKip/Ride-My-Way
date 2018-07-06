@@ -91,7 +91,7 @@ def accept_reject_response(rideid,requestid):
 
     user = get_jwt_identity()
     ride = get_ride_by_id(rideid)
-    username = get_username(user)3
+    username = get_username(user)
     if ride["created_by"] != username:
         return jsonify({"error":"You have no privilleges to access this ride offer "}),405
     status = request.json.get("Response")
