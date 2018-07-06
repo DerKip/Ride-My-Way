@@ -1,4 +1,5 @@
-from ...models.models import  Rides, Requests ,get_all_requests
+from ...models.models import  Rides, Requests ,get_all_requests, get_ride_by_id, get_ride_user_time, \
+get_username, get_driver_rides
 from flask import request, jsonify
 from flask_jwt_extended import JWTManager, jwt_required, create_access_token, get_jwt_identity
 import json
@@ -15,16 +16,13 @@ def create_new_ride_offer(created_by):
             "departure_time":data.get("departure_time")
     }
 
-    if not all( 
-                [ 
-                  data.get("destination"),
-                  data.get("from_location"),
-                  data.get("departure_time")
-                ]
-            ):
-        error = jsonify({'error': 'Missing field/s'})
-        return json_response(error, 400)
-   
+    if given_data["destination"] is not None and given_data["destination"].strip() == "":
+        return jsonify({'error': 'Required field/s Missing'}), 400
+    if given_data["from_location"] is not None and given_data["from_location"].strip() == "":
+        return jsonify({'error': 'Required field/s Missing'}), 400
+    if given_data["departure_time"] is not None and given_data["departure_time"].strip() == "":
+        return jsonify({'error': 'Required field/s Missing'}), 400
+    
     else:
         new_ride_offer = Rides(
                                 given_data["created_by"],
@@ -32,9 +30,18 @@ def create_new_ride_offer(created_by):
                                 given_data["from_location"],
                                 given_data["price"],
                                 given_data["departure_time"]
-                            )
+         
+                           )  
+        # check if there is an existing ride the user created with the same departure time
+        user_id = get_jwt_identity()
+        user = get_username(user_id)
+        rides = get_ride_user_time(user,request.json.get("departure_time"))
+        if len(rides) != 0:
+            return jsonify({"message":"You already placed a ride offer at this time"}),400
         new_ride_offer.create_ride()
         return jsonify({"Created_ride_offer":new_ride_offer.__dict__}),201
+
+              
 
 def make_ride_request(ride_id):
     """Makes a request to join a ride offer"""
@@ -42,5 +49,3 @@ def make_ride_request(ride_id):
     response ='Interested'
     new_request = Requests(user_id,ride_id,response)
     return  new_request.create_request()
-
-

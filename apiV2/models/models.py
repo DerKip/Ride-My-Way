@@ -47,12 +47,18 @@ def get_user(user):
 def get_user_by_id(userid):
     db.cur.execute("SELECT * FROM users WHERE id = (%s)",(userid,))
     db.conn.commit() 
-    user_id = db.cur.fetchone()
-    return user_id
+    user = db.cur.fetchone()
+    return user
 
 def get_username(userid):
-    user_dict= dict(get_user_by_id(userid))
+    user_dict= get_user_by_id(userid)
     return user_dict["username"]
+
+def get_user_car_details(userid):
+    db.cur.execute("SELECT car_regno FROM users WHERE id = (%s)",(userid,))
+    db.conn.commit() 
+    car_details = db.cur.fetchone()
+    return car_details
 
 class Rides():
     def __init__(self, created_by, destination, from_location, price ,departure_time, date_created =''):
@@ -87,15 +93,21 @@ def get_all_rides():
 def get_ride_by_id(rideid):
     db.cur.execute("SELECT * FROM rides WHERE id = (%s)",(rideid,))
     db.conn.commit()
-    ride_id = db.cur.fetchone()
-    return ride_id
+    ride = db.cur.fetchone()
+    return ride
 
 def get_driver_rides(created_by):
-    db.cur.execute(
-        "SELECT * FROM rides WHERE created_by = (%s)", (created_by))
+    db.cur.execute("SELECT * FROM rides WHERE created_by = (%s)", (created_by,))
     db.conn.commit()
-    driver_rides = db.cur.fetchall()
-    return driver_rides
+    rides = db.cur.fetchall()
+    return rides
+
+def get_ride_user_time(username,departure_time):
+    db.cur.execute(
+        "SELECT * FROM rides WHERE departure_time = (%s) AND created_by = (%s)", (departure_time,username))
+    db.conn.commit()
+    rides = db.cur.fetchall()
+    return rides
 
 class Requests():
     def __init__(self,user_id,ride_id,response):
@@ -127,6 +139,7 @@ def get_all_requests(rideid):
     db.conn.commit()
     requests = db.cur.fetchall()
     return requests
+
 
 def insert_response(status,requestid):
     if status == "Accept":
