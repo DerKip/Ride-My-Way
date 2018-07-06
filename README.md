@@ -20,22 +20,44 @@ Andela Developer Challenge one
 5. Drivers can view the requests to the ride offer they created.
 6. Drivers can either accept or reject a ride request.
 
-# API Endpoints
-|Endpoint                               | Functionality                                 |HTTP method 
-|---------------------------------------|-----------------------------------------------|-------------
-|/api/v1/user/register                  |Register user                                  |POST       
-|/api/v1/login                          |Logs in a user/driver                          |POST
-|/api/v1/user/logout                    |Logs out user                                  |DELETE
-|/api/v1/user/user/rides                |Return available ride offers                   |GET
-|/api/v1/user/user/rides/*ride_id*/join |User join ride offer                           |GET
-|/api/v1/user/user/rides/joined         |Return joined rides                            |GET
-|/api/v1/driver/register                |Register driver                                |POST
-|/api/v1/driver/logout                  |Logs out a driver                              |DELETE
-|/api/v1/driver/create_ride             |Create ride offer                              |POST
-|/api/v1/driver/rides                   |Return available rides to driver               |GET
-|/api/v1/driver/rides/*ride_id*         |Returns a single ride created                  |GET
-|/api/v1/driver/rides/<str:driver>      |Returns all rides created by a specific driver |GET
+ # API Endpoints
+|Endpoint                                           | Functionality                     |HTTP method 
+|---------------------------------------------------|-----------------------------------|-------------
+|/api/v2/auth/signup                                |Register user                      |POST       
+|/api/v2/auth/login                                 |Logs in a user                     |POST
+|/api/v2/users/rides                                |Fetch all available rides          |GET 
+|/api/v2/users/rides/*ride_id*                      |Fetch the details of a single ride |GET
+|/api/v2/users/rides/*ride_id*/requests             |Make a ride request                |POST
+|/api/v2/users/rides                                |Create a ride offer                |POST
+|/api/v2/users/rides/*ride_id*/requests             |Fetch all ride requests            |GET
+|/api/v2/users/rides/*ride_id*/requests/*requestId* |Accept or Reject a request         |PUT
 
+# Installing the App and Running it 
+
+   Clone the repo:   https://github.com/DerKip/Ride-My-Way.git
+   
+   Install a virtual environment and activate it : on windows ```py -3 -m venv venv
+                                                                 .\venv\Scripts\activate```
+                                                   on linux  ```$ python3 -m venv venv;
+                                                                $ source venv/bin/activate```
+
+   Cd to the directory of the application  `cd Ride-My-Way`  
+   
+   Install all the dependencies through: `pip install -r requirements.txt`
+   
+   create a PostgreSQL database: ```ride-my-way```
+   Run the schema file to initialize the tables ```python schema.py```
+   Run application: `python run.py`
+   
+# Running tests
+   
+   Cd to the directory of either apiv1 or apiv2 : `cd apiv1` or `cd apiv2`
+   
+   Run the test: `- nosetests --with-coverage --cover-package=routes tests/*`
+   
+# API doccumentation Link
+   Link: https://ridemyway1.docs.apiary.io/#
+   
 # UI Templates
 You can view the UI templates on  :point_right: [Github Pages](https://derkip.github.io/Ride-My-Way/)
 
