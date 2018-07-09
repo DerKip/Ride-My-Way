@@ -61,6 +61,13 @@ class UserTestCase(BaseTestCase):
         content_type='application/json')
         self.access_token2 = json.loads(self.response2.data.decode())['token']
         self.auth_header2 = {'Authorization': 'Bearer {}'.format(self.access_token2)}
+
+    
+    def test_invalid_content_type(self):
+        """Test user can't POST invalid content type"""
+        res = self.client().post(self.full_url('users/rides'), data=json.dumps(self.data["ride"]), headers=self.auth_header,
+        content_type='text')
+        self.assertEqual(res.status_code, 400)
         
     def test_user_can_create_ride_offer(self):
         """Test driver can create a ride offer (POST request)"""
