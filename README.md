@@ -2,7 +2,7 @@
 
 Andela Developer Challenge one
 
-[![Build Status](https://travis-ci.org/DerKip/Ride-My-Way.svg?branch=ft-create-endpoints-158523680)](https://travis-ci.org/DerKip/Ride-My-Way) [![Coverage Status](https://coveralls.io/repos/github/DerKip/Ride-My-Way/badge.svg?branch=ft-create-endpoints-158523680)](https://coveralls.io/github/DerKip/Ride-My-Way?branch=ft-create-endpoints-158523680) 
+[![Build Status](https://travis-ci.org/DerKip/Ride-My-Way.svg?branch=develop)](https://travis-ci.org/DerKip/Ride-My-Way) [![Coverage Status](https://coveralls.io/repos/github/DerKip/Ride-My-Way/badge.svg?branch=develop)](https://coveralls.io/github/DerKip/Ride-My-Way?branch=develop) 
 ![GitHub last commit](https://img.shields.io/github/last-commit/DerKip/Ride-My-Way/develop.svg)
 [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 
