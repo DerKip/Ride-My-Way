@@ -14,8 +14,10 @@ before_script:
   - cp apiV2/models/database.yml.travis apiV2/models/database.yml
 
 script:
+  - cd apiV1
+  - nosetests --with-coverage --cover-package=routes tests/*
   - cd apiV2
   - nosetests --with-coverage --cover-package=routes tests/*
-
+  
 after_success: 
   - coveralls

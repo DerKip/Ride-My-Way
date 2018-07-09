@@ -1,0 +1,5 @@
+postgresql:
+  adapter: postgresql
+  database: ride_my_way
+  username: postgres
+  password: postgres
