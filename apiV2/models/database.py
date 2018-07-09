@@ -8,7 +8,7 @@ class Database(object):
             self.init_app(app)
 
     def init_app(self, app):
-        self.conn = connect("dbname='ride-my-way' user='postgres' host='localhost' password='admin'")
+        self.conn = connect("dbname='ride_my_way' user='postgres' host='localhost' password='admin'")
         self.cur = self.conn.cursor(cursor_factory=RealDictCursor)
 
     def query(self, query):
