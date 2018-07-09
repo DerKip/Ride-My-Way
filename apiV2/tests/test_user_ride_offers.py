@@ -11,58 +11,87 @@ class UserTestCase(BaseTestCase):
         db.__init__()
         drop()
         initialize()
-
-        self.rideOffer={
-            "destination":"Westlands",
-            "from_location":"Pumu",
-            "departure_time":"10:30",
-            "price":"300"
-                        }
-        self.user = {
-            "username":"Angelina",
-            "email":"Angelina@gmail.com",
-            "car_model":"Mark x",
-            "car_regno":"KCR 127F",
-            "password":"angelina",
-            "confirm_password":"angelina"     
+        self.data = {
+            "user":{
+                    "username":"Emannuel",
+                    "email":"dkip64@gmail.com",
+                    "contact":"0721611441",
+                    "car_model": "Mazzerati",
+                    "car_regno": "KCJ 908Y",
+                    "password":"Van#dgert3",
+                    "confirm_password":"Van#dgert3"
+                    },
+            "login":{
+                    "username":"Emannuel",
+                    "password":"Van#dgert3",
+                    },
+            "login2":{
+                    "username":"Emannuel",
+                    "password":"Van#dgert3",
+                    },
+             "ride":{
+                    "destination":"Westlands",
+                    "from_location":"CBD",
+                    "departure_time":"10:30",
+                    "price":"300"
+                    },
+            "user2":{
+                    "username":"Angelina",
+                    "email":"Angelina@gmail.com",
+                    "contact":"0722611441",
+                    "password":"angelinA#22",
+                    "confirm_password":"angelinA#22"     
+                    }
         }
-        self.user_log_in = {
-            "username":"Derrick",
-            "password":"dkip"}
+        # user 1 signup and login to get tocken header
+        self.client().post(self.full_url('auth/signup'),data=json.dumps(self.data["user"]),
+        content_type='application/json')
+        self.response = self.client().post(self.full_url('auth/login'),data=json.dumps(self.data["login"]),
+        content_type='application/json')
+        self.access_token = json.loads(self.response.data.decode())['token']
+        self.auth_header = {'Authorization': 'Bearer {}'.format(self.access_token)}
+
+        # user 2 signup and login to get tocken header
+        self.client().post(self.full_url('auth/signup'),data=json.dumps(self.data["user2"]),
+        content_type='application/json')
+        self.response2 = self.client().post(self.full_url('auth/login'),data=json.dumps(self.data["login2"]),
+        content_type='application/json')
+        self.access_token2 = json.loads(self.response2.data.decode())['token']
+        self.auth_header2 = {'Authorization': 'Bearer {}'.format(self.access_token2)}
         
-    
-
-
     def test_user_can_create_ride_offer(self):
         """Test driver can create a ride offer (POST request)"""
-        res = self.client().post(self.full_url('users/rides'), data=json.dumps(dict(self.rideOffer)),
+        res = self.client().post(self.full_url('users/rides'), data=json.dumps(self.data["ride"]), headers=self.auth_header,
         content_type='application/json')
         self.assertEqual(res.status_code, 201)
 
-    def test_driver_can_get_all_rides_offers(self):
-        """Test driver can get all ride offer (GET request)"""
-        res = self.client().post(self.full_url('dr/create_ride'), data=json.dumps(dict(self.rideOffer)),
+    def test_user_can_get_all_rides_offers(self):
+        """Test user can get all ride offer (GET request)"""
+        res = self.client().get(self.full_url('users/rides'), headers=self.auth_header,
         content_type='application/json')
-        self.assertEqual(res.status_code, 201)
+        self.assertEqual(res.status_code, 200)
 
-        res = self.client().get(self.full_url('driver/rides'))
-        self.assertEqual(res.status_code, 200) 
-
-    def test_driver_can_get_a_single_ride_offer(self):
-        """Test driver can get a ride offer by id (GET request)"""
-        res = self.client().post(self.full_url('driver/create_ride'), data=json.dumps(dict(self.rideOffer)),
+    def test_user_can_get_a_single_ride_offer(self):
+        """Test user can get a ride offer by id (GET request)"""
+        res = self.client().get(self.full_url('users/rides/1'), headers=self.auth_header,
         content_type='application/json')
-        self.assertEqual(res.status_code, 201) #POST request on test ride offers
-
-        res = self.client().get(self.full_url('driver/rides/1'))
-        self.assertEqual(res.status_code,200)
+        self.assertEqual(res.status_code, 200)
     
-    def test_driver_can_see_created_ride_offers(self):
-        """Test whether a driver can see ride offers he/she has created"""
-        res = self.client().post(self.full_url('driver/create_ride'), data=json.dumps(dict(self.rideOffer)),
+    def test_request_(self):
+        """Test user can send a request to join a ride offer (POST request)"""
+        res = self.client().post(self.full_url('users/rides'), data=json.dumps(self.data["ride"]), headers=self.auth_header,
         content_type='application/json')
-        self.assertEqual(res.status_code, 201) #POST request on test ride offers
+        res = self.client().post(self.full_url('users/rides/1/request'), headers=self.auth_header2,
+        content_type='application/json')
+        self.assertEqual(res.status_code, 200)
+    
+    def test_request_by_owner(self):
+        """Test user can't send a request to join his/her own ride offer (POST request)"""
+        res = self.client().post(self.full_url('users/rides'), data=json.dumps(self.data["ride"]), headers=self.auth_header,
+        content_type='application/json')
+        res = self.client().post(self.full_url('users/rides/1/request'), headers=self.auth_header,
+        content_type='application/json')
+        self.assertEqual(res.status_code, 200)
+    
 
-        res = self.client().get(self.full_url('driver/rides/paul'))
-        self.assertEqual(res.status_code,200) 
 
