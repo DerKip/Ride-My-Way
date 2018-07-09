@@ -24,6 +24,13 @@ class RegistrationTestCase(BaseTestCase):
                     "password":"Van#dgert3",
                     "confirm_password":"Van#dgert3"
                     },
+            "spaces":{
+                    "username":"  ",
+                    "email":"dkip64@gmail.com",
+                    "contact":"   ",
+                    "password":"TakeMethere1!",
+                    "confirm_password":"TakeMethere1!"
+                    },
             "user2":{
                     "username":"",
                     "email":"",
@@ -67,6 +74,12 @@ class RegistrationTestCase(BaseTestCase):
         res=self.client().post(self.full_url('auth/signup'), data=json.dumps(self.data["user"]),
         content_type='application/json') #checks if user can't register with existing user details
         self.assertEqual(res.status_code,409)
+
+    def test_user_cannot_register_with_empty_spaces(self):
+        """test whether user a user cannot register with empty spaces in fields"""
+        res=self.client().post(self.full_url('auth/signup'), data=json.dumps(self.data["spaces"]),
+        content_type='application/json')
+        self.assertEqual(res.status_code,400)
 
     def test_user_cannot_register_with_missing_fields(self):
         """test whether user a user cannot register with missing fields"""
