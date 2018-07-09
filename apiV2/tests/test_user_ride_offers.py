@@ -26,8 +26,8 @@ class UserTestCase(BaseTestCase):
                     "password":"Van#dgert3",
                     },
             "login2":{
-                    "username":"Emannuel",
-                    "password":"Van#dgert3",
+                    "username":"Angelina",
+                    "password":"angelinA#22",
                     },
              "ride":{
                     "destination":"Westlands",
@@ -41,7 +41,10 @@ class UserTestCase(BaseTestCase):
                     "contact":"0722611441",
                     "password":"angelinA#22",
                     "confirm_password":"angelinA#22"     
-                    }
+                    },
+         "response":{
+                    "Response":"Accept"
+                    }   
         }
         # user 1 signup and login to get tocken header
         self.client().post(self.full_url('auth/signup'),data=json.dumps(self.data["user"]),
@@ -65,6 +68,12 @@ class UserTestCase(BaseTestCase):
         content_type='application/json')
         self.assertEqual(res.status_code, 201)
 
+    def test_create_ride_without_car(self):
+        """Test user can't create a ride offer without registering car details (POST request)"""
+        res = self.client().post(self.full_url('users/rides'), data=json.dumps(self.data["ride"]), headers=self.auth_header2,
+        content_type='application/json')
+        self.assertEqual(res.status_code, 400)
+
     def test_user_can_get_all_rides_offers(self):
         """Test user can get all ride offer (GET request)"""
         res = self.client().get(self.full_url('users/rides'), headers=self.auth_header,
@@ -73,6 +82,8 @@ class UserTestCase(BaseTestCase):
 
     def test_user_can_get_a_single_ride_offer(self):
         """Test user can get a ride offer by id (GET request)"""
+        res = self.client().post(self.full_url('users/rides'), data=json.dumps(self.data["ride"]), headers=self.auth_header,
+        content_type='application/json')
         res = self.client().get(self.full_url('users/rides/1'), headers=self.auth_header,
         content_type='application/json')
         self.assertEqual(res.status_code, 200)
@@ -91,7 +102,53 @@ class UserTestCase(BaseTestCase):
         content_type='application/json')
         res = self.client().post(self.full_url('users/rides/1/request'), headers=self.auth_header,
         content_type='application/json')
-        self.assertEqual(res.status_code, 200)
+        self.assertEqual(res.status_code, 405)
     
+    def test_request_by_rideid(self):
+        """Test user can see requests sent a ride offer (GET request)"""
+        res = self.client().post(self.full_url('users/rides'), data=json.dumps(self.data["ride"]), headers=self.auth_header,
+        content_type='application/json')
+        res = self.client().post(self.full_url('users/rides/1/request'), headers=self.auth_header2,
+        content_type='application/json')
+        res = self.client().get(self.full_url('users/rides/1/requests'),headers=self.auth_header,
+        content_type='application/json')
+        self.assertEqual(res.status_code,200)
+    
+    def test_request_by_rideid_with_no_request(self):
+        """Test user can see a message if ride has no requests """
+        res = self.client().post(self.full_url('users/rides'), data=json.dumps(self.data["ride"]), headers=self.auth_header,
+        content_type='application/json')
+        res = self.client().get(self.full_url('users/rides/1/requests'),headers=self.auth_header,
+        content_type='application/json')
+        self.assertEqual(res.status_code,404)
+    
+    def test_respond_to_request(self):
+        """Test user can accept or reject request"""
+        res = self.client().post(self.full_url('users/rides'), data=json.dumps(self.data["ride"]), headers=self.auth_header,
+        content_type='application/json')
+        res = self.client().post(self.full_url('users/rides/1/request'), headers=self.auth_header2,
+        content_type='application/json')
+        res = self.client().get(self.full_url('users/rides/1/requests/1'),data=json.dumps(self.data["response"]),headers=self.auth_header,
+        content_type='application/json')
+        self.assertEqual(res.status_code,200)
+    
+    def test_respond_to_non_existent_ride_id(self):
+        """Test user can't accept or reject request for a non-existent rideid"""
+        res = self.client().post(self.full_url('users/rides'), data=json.dumps(self.data["ride"]), headers=self.auth_header,
+        content_type='application/json')
+        res = self.client().get(self.full_url('users/rides/777/requests/1'),data=json.dumps(self.data["response"]),headers=self.auth_header,
+        content_type='application/json')
+        self.assertEqual(res.status_code,404)
 
+    def test_user_cant_respond_without_privilleges(self):
+        """Test user cant accept or reject request for ride he/she did not create"""
+        res = self.client().post(self.full_url('users/rides'), data=json.dumps(self.data["ride"]), headers=self.auth_header,
+        content_type='application/json')
+        res = self.client().post(self.full_url('users/rides/1/request'), headers=self.auth_header2,
+        content_type='application/json')
+        res = self.client().get(self.full_url('users/rides/1/requests/1'),data=json.dumps(self.data["response"]),headers=self.auth_header2,
+        content_type='application/json')
+        self.assertEqual(res.status_code,405)
+    
+    
 
