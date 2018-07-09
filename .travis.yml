@@ -16,7 +16,7 @@ before_script:
 script:
   - cd apiV1
   - nosetests --with-coverage --cover-package=routes tests/*
-  - cd ..apiV2
+  - cd ../apiV2
   - nosetests --with-coverage --cover-package=routes tests/*
   
 after_success: 
