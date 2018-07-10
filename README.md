@@ -54,7 +54,7 @@ Andela Developer Challenge one
    
    Cd to the directory of either apiv1 or apiv2 : `cd apiv1` or `cd apiv2`
    
-   Run the test: `- nosetests --with-coverage --cover-package=routes tests/*`
+   Run the test: `- nosetests --with-coverage --cover-package=routes `
    
 # API doccumentation Link
    Link: https://ridemyway1.docs.apiary.io/#
