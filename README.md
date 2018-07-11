@@ -38,15 +38,18 @@ Andela Developer Challenge one
    Clone the repo:   https://github.com/DerKip/Ride-My-Way.git
    
    Install a virtual environment and activate it : on windows ```py -3 -m venv venv
+   
                                                                  .\venv\Scripts\activate```
+                                                                 
                                                    on linux  ```$ python3 -m venv venv;
+                                                   
                                                                 $ source venv/bin/activate```
 
    Cd to the directory of the application  `cd Ride-My-Way`  
    
    Install all the dependencies through: `pip install -r requirements.txt`
    
-   create a PostgreSQL database: ```ride-my-way```
+   create a PostgreSQL database: ```ride_my_way```
    Run the schema file to initialize the tables ```python schema.py```
    Run application: `python run.py`
    
