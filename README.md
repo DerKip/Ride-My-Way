@@ -1,6 +1,6 @@
 # Ride-My-Way :car:
 
-Andela Developer Challenge one
+Andela Developer Challenge 
 
 [![Build Status](https://travis-ci.org/DerKip/Ride-My-Way.svg?branch=develop)](https://travis-ci.org/DerKip/Ride-My-Way) [![Coverage Status](https://coveralls.io/repos/github/DerKip/Ride-My-Way/badge.svg?branch=develop)](https://coveralls.io/github/DerKip/Ride-My-Way?branch=develop) 
 ![GitHub last commit](https://img.shields.io/github/last-commit/DerKip/Ride-My-Way/develop.svg)
