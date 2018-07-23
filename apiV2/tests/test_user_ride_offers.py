@@ -35,6 +35,12 @@ class UserTestCase(BaseTestCase):
                     "departure_time":"10:30",
                     "price":"300"
                     },
+            "ride2":{
+                    "destination":"Kilimani",
+                    "from_location":"CBD",
+                    "departure_time":"10:30",
+                    "price":"300"
+                    },
             "user2":{
                     "username":"Angelina",
                     "email":"Angelina@gmail.com",
@@ -74,6 +80,14 @@ class UserTestCase(BaseTestCase):
         res = self.client().post(self.full_url('users/rides'), data=json.dumps(self.data["ride"]), headers=self.auth_header,
         content_type='application/json')
         self.assertEqual(res.status_code, 201)
+    
+    def test_user_can_update_ride_offer(self):
+        """Test whether a driver can update a ride offer (PUT request)"""
+        res = self.client().post(self.full_url('users/rides'), data=json.dumps(self.data["ride"]), headers=self.auth_header,
+        content_type='application/json')
+        res = self.client().put(self.full_url('users/rides/1/update'), data=json.dumps(self.data["ride2"]), headers=self.auth_header,
+        content_type='application/json')
+        self.assertEqual(res.status_code, 200)
 
     def test_create_ride_without_car(self):
         """Test user can't create a ride offer without registering car details (POST request)"""
