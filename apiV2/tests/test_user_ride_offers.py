@@ -89,6 +89,22 @@ class UserTestCase(BaseTestCase):
         content_type='application/json')
         self.assertEqual(res.status_code, 200)
 
+    def test_delete_ride_offer(self):
+        """Test whether a driver can delete a ride offer (DELETE request)"""
+        res = self.client().post(self.full_url('users/rides'), data=json.dumps(self.data["ride"]), headers=self.auth_header,
+        content_type='application/json')
+        res = self.client().delete(self.full_url('users/rides/1/delete'), headers=self.auth_header,
+        content_type='application/json')
+        self.assertEqual(res.status_code, 200)
+
+    def test_delete_ride_offer_without_privilleges(self):
+        """Test whether a driver can delete a ride offer that he/she did not create(DELETE request)"""
+        res = self.client().post(self.full_url('users/rides'), data=json.dumps(self.data["ride"]), headers=self.auth_header,
+        content_type='application/json')
+        res = self.client().delete(self.full_url('users/rides/1/delete'), headers=self.auth_header2,
+        content_type='application/json')
+        self.assertEqual(res.status_code, 405) 
+
     def test_create_ride_without_car(self):
         """Test user can't create a ride offer without registering car details (POST request)"""
         res = self.client().post(self.full_url('users/rides'), data=json.dumps(self.data["ride"]), headers=self.auth_header2,
