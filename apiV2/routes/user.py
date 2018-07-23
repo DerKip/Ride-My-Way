@@ -46,6 +46,19 @@ def create_ride():
         return jsonify({"error":"You Can't Make a ride offer without a car, kindly register"}),400
     return rides_controller.create_new_ride_offer(username)
 
+@user_route.route('/rides/<rideid>/update', methods=['PUT'])
+@jwt_required
+def update(rideid):
+    """update ride offer endpoint"""
+    if get_ride_by_id(rideid) == None:
+        return jsonify ({"message":"None-existent ride id"}),404
+    user = get_jwt_identity()
+    ride = get_ride_by_id(rideid)
+    username = get_username(user)
+    if ride["created_by"] != username:
+        return jsonify({"error":"You have no privilleges to access this ride offer "}),405
+    return rides_controller.update_ride(rideid)
+
 @user_route.route('/rides', methods=['GET'])
 @jwt_required
 def get_all_ride_offers():
