@@ -120,6 +120,12 @@ def get_ride_user_time(username,departure_time):
     rides = db.cur.fetchall()
     return rides
 
+def delete_ride_offer(rideid):
+    db.cur.execute("DELETE FROM rides WHERE id = (%s)",(rideid,))
+    db.conn.commit()
+    db.cur.execute("DELETE FROM requests WHERE ride_id = (%s)",(rideid,))
+    db.conn.commit()
+
 
 
 class Requests():
