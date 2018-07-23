@@ -48,7 +48,7 @@ def register_new_user():
     all_users = get_users()
     for user in all_users:
         if user["username"]== new_user.username:
-            return jsonify({"message":"User already exists!"}),409
+            return jsonify({"message":"Username already taken!"}),409
         elif user["email"]== new_user.email:
             return jsonify({"message":"Email already exists!"}),409
     new_user.create_user()
