@@ -38,7 +38,7 @@ def register_new_user():
     if not re.match(r"[^@]+@[^@]+\.[^@]+", given_data["email"]):
         return jsonify({"error":"Your email is invalid"}),400
     new_user = User(
-                    given_data["username"],
+                    given_data["username"].lower(),
                     given_data["email"],
                     generate_password_hash(given_data["password"],method='sha256'),
                     given_data["car_model"],
