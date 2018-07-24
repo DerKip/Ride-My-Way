@@ -30,6 +30,8 @@ Andela Developer Challenge
 |/api/v2/users/rides/*ride_id*                      |Fetch the details of a single ride |GET
 |/api/v2/users/rides/*ride_id*/requests             |Make a ride request                |POST
 |/api/v2/users/rides                                |Create a ride offer                |POST
+|/api/v2/users/rides/*ride_id*/update               |Update details of a ride offer     |PUT
+|/api/v2/users/rides/*ride_id*/delete               |Delete a ride offer                |DELETE
 |/api/v2/users/rides/*ride_id*/requests             |Fetch all ride requests            |GET
 |/api/v2/users/rides/*ride_id*/requests/*requestId* |Accept or Reject a request         |PUT
 

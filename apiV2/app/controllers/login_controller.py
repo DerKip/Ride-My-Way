@@ -17,7 +17,7 @@ def login():
         return json_response(error,400)
 
     given_data = {
-                  "username":request.json.get("username"),
+                  "username":request.json.get("username").lower(),
                   "password":request.json.get("password"),
                   }   
     #Check if username is in the  db

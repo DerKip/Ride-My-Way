@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request
 from ..app.controllers import registration_controller, login_controller, rides_controller
 from flask_jwt_extended import jwt_required,  get_jwt_identity  
 from ..models.models import User,get_users, get_username, get_all_rides, get_ride_by_id, \
-get_all_requests, insert_response, get_request_id, get_user_car_details
+get_all_requests, insert_response, get_request_id, get_user_car_details, delete_ride_offer
 from utils import JSON_MIME_TYPE, json_response
 import json
 
@@ -45,6 +45,34 @@ def create_ride():
     if car['car_regno'] == None :
         return jsonify({"error":"You Can't Make a ride offer without a car, kindly register"}),400
     return rides_controller.create_new_ride_offer(username)
+
+@user_route.route('/rides/<rideid>/update', methods=['PUT'])
+@jwt_required
+def update(rideid):
+    """update ride offer endpoint"""
+    if get_ride_by_id(rideid) == None:
+        return jsonify ({"message":"None-existent ride id"}),404
+    user = get_jwt_identity()
+    ride = get_ride_by_id(rideid)
+    username = get_username(user)
+    if ride["created_by"] != username:
+        return jsonify({"error":"You have no privilleges to access this ride offer "}),405
+    return rides_controller.update_ride(rideid)
+
+
+@user_route.route('/rides/<rideid>/delete', methods=['DELETE'])
+@jwt_required
+def delete_ride(rideid):
+    """delete ride offer endpoint"""
+    if get_ride_by_id(rideid) == None:
+        return jsonify ({"message":"None-existent ride id"}),404
+    user = get_jwt_identity()
+    ride = get_ride_by_id(rideid)
+    username = get_username(user)
+    if ride["created_by"] != username:
+        return jsonify({"error":"You have no privilleges to access this ride offer "}),405
+    delete_ride_offer(rideid)
+    return jsonify({"message":"successfully deleted ride offer"}),200
 
 @user_route.route('/rides', methods=['GET'])
 @jwt_required

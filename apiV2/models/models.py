@@ -82,6 +82,17 @@ class Rides():
                             )
                         )
         db.conn.commit()
+
+def update_ride_offer(rideid,destination,from_location,price,departure_time):
+    db.cur.execute(""" UPDATE rides SET destination = (%s) WHERE id = (%s) """,(destination,rideid))          
+    db.conn.commit()
+    db.cur.execute(""" UPDATE rides SET from_location = (%s) WHERE id = (%s) """,(from_location,rideid))         
+    db.conn.commit()
+    db.cur.execute(""" UPDATE rides SET price = (%s) WHERE id = (%s) """,(price,rideid))         
+    db.conn.commit()
+    db.cur.execute(""" UPDATE rides SET departure_time = (%s) WHERE id = (%s) """,(departure_time,rideid))         
+    db.conn.commit()
+        
     
 def get_all_rides():
     db.cur.execute("SELECT * FROM rides")
@@ -108,6 +119,14 @@ def get_ride_user_time(username,departure_time):
     db.conn.commit()
     rides = db.cur.fetchall()
     return rides
+
+def delete_ride_offer(rideid):
+    db.cur.execute("DELETE FROM rides WHERE id = (%s)",(rideid,))
+    db.conn.commit()
+    db.cur.execute("DELETE FROM requests WHERE ride_id = (%s)",(rideid,))
+    db.conn.commit()
+
+
 
 class Requests():
     def __init__(self,user_id,ride_id,response):

@@ -34,8 +34,8 @@ def main():
             """)
         db.query("""CREATE TABLE requests(
             id serial PRIMARY KEY,
-            user_id INTEGER REFERENCES users(id),
-            ride_id INTEGER REFERENCES rides(id),
+            user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+            ride_id INTEGER REFERENCES rides(id) ON DELETE CASCADE,
             response VARCHAR(255) DEFAULT 'no_response',
             status VARCHAR(255) DEFAULT 'pending'
         )
