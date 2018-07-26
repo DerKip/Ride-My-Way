@@ -29,14 +29,18 @@ def register_new_user():
     if given_data["confirm_password"] is not None and given_data["confirm_password"].strip() == "":
         return jsonify({'error': 'Required field/s Missing'}), 400        
     # check password strength using passwordmeter module
+    if not re.match(r"[^@]+@[^@]+\.[^@]+", given_data["email"]):
+        return jsonify({"error":"Your email is invalid"}),400
     meter = passwordmeter.Meter(settings=dict(factors='length,charmix'))
     strength, improvements = meter.test(given_data["password"])
     if strength < 0.2:
-        return jsonify({"Your password is too weak, Consider this improvements":improvements}),400
+        
+        return jsonify({"error":"""Your password is too weak, Consider this improvements
+                                    <p> lenght: %(length)s<p>
+                                    <p>charmix: %(charmix)s<p>""" %improvements}),400
+
     if given_data["password"] != given_data["confirm_password"]:
         return jsonify({"error":" Your passwords do no match"}),400
-    if not re.match(r"[^@]+@[^@]+\.[^@]+", given_data["email"]):
-        return jsonify({"error":"Your email is invalid"}),400
     new_user = User(
                     given_data["username"].lower(),
                     given_data["email"],
