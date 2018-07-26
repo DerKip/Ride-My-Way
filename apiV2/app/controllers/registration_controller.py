@@ -34,7 +34,7 @@ def register_new_user():
     if strength < 0.2:
         return jsonify({"Your password is too weak, Consider this improvements":improvements}),400
     if given_data["password"] != given_data["confirm_password"]:
-        return jsonify({"message":" Your passwords do no match"}),400
+        return jsonify({"error":" Your passwords do no match"}),400
     if not re.match(r"[^@]+@[^@]+\.[^@]+", given_data["email"]):
         return jsonify({"error":"Your email is invalid"}),400
     new_user = User(
@@ -48,8 +48,8 @@ def register_new_user():
     all_users = get_users()
     for user in all_users:
         if user["username"]== new_user.username:
-            return jsonify({"message":"Username already taken!"}),409
+            return jsonify({"error":"Username already taken!"}),409
         elif user["email"]== new_user.email:
-            return jsonify({"message":"Email already exists!"}),409
+            return jsonify({"error":"Email already exists!"}),409
     new_user.create_user()
     return jsonify({"message":"Registration Successfull"}),201
