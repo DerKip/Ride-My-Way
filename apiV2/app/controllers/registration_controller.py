@@ -35,9 +35,7 @@ def register_new_user():
     strength, improvements = meter.test(given_data["password"])
     if strength < 0.2:
         
-        return jsonify({"error":"""Your password is too weak, Consider this improvements
-                                    <p> lenght: %(length)s<p>
-                                    <p>charmix: %(charmix)s<p>""" %improvements}),400
+        return jsonify({"error":"""Your password is too weak, Consider this improvements <p> lenght: %(length)s<p> <p>charmix: %(charmix)s<p>""" %improvements}),400
 
     if given_data["password"] != given_data["confirm_password"]:
         return jsonify({"error":" Your passwords do no match"}),400
