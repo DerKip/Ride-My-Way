@@ -40,7 +40,7 @@ class LoginTestCase(BaseTestCase):
         content_type='application/json')
         res = self.client().post(self.full_url('auth/login'),data=json.dumps(self.data["login"]),
         content_type='application/json')
-        self.assertEqual(res.status_code,202)
+        self.assertEqual(res.status_code,200)
 
     def test_unknown_user_cannot_login(self):
         """Test whether unknown user cannot log in"""
