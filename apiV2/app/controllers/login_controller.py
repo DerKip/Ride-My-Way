@@ -27,6 +27,6 @@ def login():
     elif check_password_hash(login_visitor["password"],given_data["password"]) == True:
         # Give access token 
         access_token = create_access_token(identity = login_visitor["id"])
-        return jsonify({"message": "Login successfull!","token":access_token}),202
+        return jsonify({"message": "Login successfull!","token":access_token}),200
     return jsonify({"error": "password incorrect!"}),401
 
