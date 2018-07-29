@@ -39,7 +39,7 @@ def create_new_ride_offer(created_by):
         if len(rides) != 0:
             return jsonify({"message":"You already placed a ride offer at this time"}),400
         new_ride_offer.create_ride()
-        return jsonify({"Created_ride_offer":new_ride_offer.__dict__}),201
+        return jsonify({"ride":new_ride_offer.__dict__ ,"message":"Successfully created ride offer"}),201
 
 def make_ride_request(ride_id):
     """Makes a request to join a ride offer"""
