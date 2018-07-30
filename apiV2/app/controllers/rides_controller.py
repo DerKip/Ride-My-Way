@@ -37,7 +37,7 @@ def create_new_ride_offer(created_by):
         user = get_username(user_id)
         rides = get_ride_user_time(user,request.json.get("departure_time"))
         if len(rides) != 0:
-            return jsonify({"message":"You already placed a ride offer at this time"}),400
+            return jsonify({"error":"You already placed a ride offer at this time"}),400
         new_ride_offer.create_ride()
         return jsonify({"ride":new_ride_offer.__dict__ ,"message":"Successfully created ride offer"}),201
 
