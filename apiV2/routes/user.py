@@ -78,7 +78,7 @@ def delete_ride(rideid):
 @jwt_required
 def get_all_ride_offers():
     """GET all ride offers endpoint"""
-    return jsonify({"all ride offers":get_all_rides()}),200
+    return jsonify({"message":"Successfull", "rides":get_all_rides()}),200
 
 @user_route.route('/rides/<rideid>', methods=['GET'])
 @jwt_required
