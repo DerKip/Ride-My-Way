@@ -2,7 +2,8 @@ from flask import Blueprint, jsonify, request
 from ..app.controllers import registration_controller, login_controller, rides_controller
 from flask_jwt_extended import jwt_required,  get_jwt_identity  
 from ..models.models import User,get_users, get_username, get_all_rides, get_ride_by_id, \
-get_all_requests, insert_response, get_request_id, get_user_car_details, delete_ride_offer
+get_all_requests, insert_response, get_request_id, get_user_car_details, delete_ride_offer, \
+get_user
 from utils import JSON_MIME_TYPE, json_response
 import json
 
@@ -86,7 +87,12 @@ def get_single_ride_offer(rideid):
     """GET single ride offer endpoint"""
     if get_ride_by_id(rideid) is None:
         return jsonify({"error":"No ride offer found"}),404
-    return jsonify({"Ride Offer:":get_ride_by_id(rideid)}),200
+    
+    creator = get_ride_by_id(rideid)["created_by"]
+    user = get_user(creator)
+    return jsonify({"ride":get_ride_by_id(rideid),\
+                    "contact":user["contact"], \
+                    "car":{"plate":user["car_regno"],"model":user["car_model"]}}),200
 
 @user_route.route('/rides/<rideid>/request', methods=['POST'])
 @jwt_required
