@@ -4,6 +4,7 @@ from flask import request, jsonify
 from flask_jwt_extended import  jwt_required, create_access_token, get_jwt_identity
 import json
 from utils import JSON_MIME_TYPE, json_response
+import datetime
 
 
 def login():
@@ -26,7 +27,8 @@ def login():
         return jsonify({"error": "User does not exist!"}),400
     elif check_password_hash(login_visitor["password"],given_data["password"]) == True:
         # Give access token 
-        access_token = create_access_token(identity = login_visitor["id"])
+        expires = datetime.timedelta(days = 7 )
+        access_token = create_access_token(identity = login_visitor["id"], expires_delta = expires)
         return jsonify({"message": "Login successfull!","token":access_token}),200
     return jsonify({"error": "password incorrect!"}),401
 
