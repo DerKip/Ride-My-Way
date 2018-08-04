@@ -159,6 +159,14 @@ def get_all_requests(rideid):
     requests = db.cur.fetchall()
     return requests
 
+def get_user_requests(user):
+    db.cur.execute("""  SELECT created_by, from_location, status, departure_time,date_created, requests.id FROM rides
+                        INNER JOIN requests on rides.id = requests.ride_id
+                        WHERE requests.user_id = (%s)""",(user,))
+    db.conn.commit()
+    requests = db.cur.fetchall()
+    return requests
+
 
 def insert_response(status,requestid):
     if status == "Accept":

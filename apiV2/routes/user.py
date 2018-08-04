@@ -3,7 +3,7 @@ from ..app.controllers import registration_controller, login_controller, rides_c
 from flask_jwt_extended import jwt_required,  get_jwt_identity  
 from ..models.models import User,get_users, get_username, get_all_rides, get_ride_by_id, \
 get_all_requests, insert_response, get_request_id, get_user_car_details, delete_ride_offer, \
-get_user
+get_user, get_user_requests
 from utils import JSON_MIME_TYPE, json_response
 import json
 
@@ -30,7 +30,7 @@ def login_user():
 def get_all_users():
     """GET all users endpoint"""
     users = get_users()
-    return jsonify({"all users": users}),200
+    return jsonify({"users": users}),200
    
 @user_route.route('/rides', methods=['POST'])
 @jwt_required
@@ -115,6 +115,17 @@ def fetch_all_ride_requests(rideid):
     if len(all_ride_requests) == 0:
         return jsonify({"Message":"No requests sent to this ride offer"}),404
     return jsonify({"Your responses so far":all_ride_requests}),200
+
+@user_route.route('/user/requests', methods=['GET'])
+@jwt_required
+def user_requests():
+    """view all requests of a particular user"""
+    user = get_jwt_identity()
+    print(user)
+    requests = get_user_requests(user)
+    if len(requests) == 0:
+        return jsonify({"Message":"you dont have any open requests"}),200
+    return jsonify({"requests":requests}),200
 
 @user_route.route('/rides/<rideid>/requests/<requestid>', methods=['PUT','GET'])
 @jwt_required
