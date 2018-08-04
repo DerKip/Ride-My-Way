@@ -113,7 +113,7 @@ def fetch_all_ride_requests(rideid):
     """Fetch all requests of a ride offer  endpoint"""
     all_ride_requests = get_all_requests(rideid)
     if len(all_ride_requests) == 0:
-        return jsonify({"Message":"No requests sent to this ride offer"}),404
+        return jsonify({"message":"No requests sent to this ride offer"}),404
     return jsonify({"Your responses so far":all_ride_requests}),200
 
 @user_route.route('/user/requests', methods=['GET'])
@@ -124,7 +124,7 @@ def user_requests():
     print(user)
     requests = get_user_requests(user)
     if len(requests) == 0:
-        return jsonify({"Message":"you dont have any open requests"}),200
+        return jsonify({"message":"you dont have any open requests"}),404
     return jsonify({"requests":requests}),200
 
 @user_route.route('/rides/<rideid>/requests/<requestid>', methods=['PUT','GET'])
