@@ -112,16 +112,16 @@ def ride_request(rideid):
 def fetch_all_ride_requests(rideid):
     """Fetch all requests of a ride offer  endpoint"""
     all_ride_requests = get_all_requests(rideid)
+    ride = get_ride_by_id(rideid)
     if len(all_ride_requests) == 0:
         return jsonify({"message":"No requests sent to this ride offer yet"}),404
-    return jsonify({"response":all_ride_requests}),200
+    return jsonify({"response":all_ride_requests,"ride":ride}),200
 
 @user_route.route('/user/requests', methods=['GET'])
 @jwt_required
 def user_requests():
     """view all requests of a particular user"""
     user = get_jwt_identity()
-    print(user)
     requests = get_user_requests(user)
     if len(requests) == 0:
         return jsonify({"message":"you dont have any open requests"}),404
