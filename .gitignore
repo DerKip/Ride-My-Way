@@ -4,4 +4,4 @@ cache/
 .env
 .vscode
 .coverage
-
+*.pyc
