@@ -1,5 +1,6 @@
 aadict==0.2.3
 aniso8601==3.0.0
+appnope==0.1.0
 asset==0.6.12
 astroid==1.6.2
 attrs==17.4.0
@@ -39,11 +40,14 @@ nose==1.3.7
 parso==0.2.1
 passwordmeter==0.1.8
 pep8==1.7.1
+pexpect==4.6.0
 pickleshare==0.7.4
 pipenv==11.9.0
 pluggy==0.6.0
 prompt-toolkit==1.0.15
 psycopg2==2.7.5
+psycopg2-binary==2.7.5
+ptyprocess==0.6.0
 py==1.5.2
 pycodestyle==2.3.1
 pyflakes==1.6.0
@@ -58,6 +62,7 @@ requests==2.19.1
 simplegeneric==0.8.1
 six==1.11.0
 traitlets==4.3.2
+typed-ast==1.1.0
 urllib3==1.23
 validate-email==1.3
 virtualenv==15.2.0
