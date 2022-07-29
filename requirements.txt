@@ -34,7 +34,7 @@ jsonschema==2.6.0
 lazy-object-proxy==1.3.1
 MarkupSafe==1.0
 mccabe==0.6.1
-mistune==0.8.3
+mistune==2.0.3
 nose==1.3.7
 parso==0.2.1
 passwordmeter==0.1.8
